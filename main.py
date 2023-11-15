@@ -27,6 +27,8 @@ home_df
 
 # %%
 
+# Scrape links (Selenium)
+
 url = 'https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT'
 #response = requests.get(url)
 
