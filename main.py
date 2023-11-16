@@ -18,7 +18,9 @@ pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 # %%
 
-# Scrape home table
+#####################
+# Scrape home table #
+#####################
 
 home_table = pd.read_html('https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT')
 home_table = home_table[0]
@@ -27,7 +29,9 @@ home_df
 
 # %%
 
-# Scrape links (Selenium)
+###########################
+# Scrape links (Selenium) #
+###########################
 
 url = 'https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT'
 #response = requests.get(url)
@@ -55,7 +59,9 @@ for row in rows:
 
 # %%
 
-##### For Loop Construction #####
+#########################
+# For loop Construction #
+#########################
 
 snow_main = pd.DataFrame()
 
@@ -121,12 +127,15 @@ print('Total Sites with Aerial Measurements: ' + str(aerial_count))
 print('Total Sites without txt data: ' + str(no_data_count))
 
 
+
 # %%
+
+# Drop rows with more than half the columns as na
 
 threshold = snow_main.shape[1] / 2
 # snow_main[snow_main.isna().sum(axis=1) >= threshold]
 
-snow_main = snow_main.dropna(thresh = threshold).reset_index(drop=True)
+snow_main = snow_main.replace('', pd.NA).dropna(thresh = threshold).reset_index(drop=True)
 
 
 
@@ -148,6 +157,39 @@ site_snow_main = site_snow_main[['Site_Name',
 
 site_snow_main
 
+# %%
+
+###################
+# Custom Features #
+###################
+
+
+
+
+# %%
+
+#######
+# EDA #
+#######
+
+import plotly.express as px
+
+plot1 = px.scatter_geo(site_snow_main, lat='Lat',
+               lon='Lon', scope='usa', color='installed')
+
+plot1.update_layout(width = 1000, height = 500)
+
+# px.scatter_geo(site_snow_main, lat='Lat',
+#                lon='Lon', locations='Site_Name', 
+#                scope='usa', color='installed', size='installed',
+#                template='plotly', title='Test: sites by year installed')
+
+
+# %%
+
+site_snow_main
+
+
 
 # %%
 
@@ -157,4 +199,7 @@ site_snow_main['installed'].value_counts()
 
 site_snow_main.columns
 
+# %%
+
+site_snow_main
 # %%

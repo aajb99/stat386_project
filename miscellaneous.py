@@ -153,3 +153,8 @@ r_clean_df = r_clean_df.iloc[1:].reset_index(drop=True)
 ##### Add Site_Name to r_clean_df
 r_clean_df['Site_Name'] = home_df['Site_Name'][0]
     
+# Drop rows with more than half the columns as na
+threshold = snow_main.shape[1] / 2
+# snow_main[snow_main.isna().sum(axis=1) >= threshold]
+snow_main = snow_main.replace('', pd.NA).dropna(thresh = threshold).reset_index(drop=True)
+
