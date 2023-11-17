@@ -18,18 +18,16 @@ pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 # %%
 
-#####################
 # Scrape home table #
 #####################
 
 home_table = pd.read_html('https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT')
 home_table = home_table[0]
-home_df = pd.DataFrame(home_table, columns=['Site_Name', 'Station', 'Elev', 'Lat', 'Lon', 'installed', 'state', 'County'])
+home_df = pd.DataFrame(home_table, columns=['Site_Name', 'Station', 'Ntwk', 'Elev', 'Lat', 'Lon', 'installed', 'state', 'County'])
 home_df
 
 # %%
 
-###########################
 # Scrape links (Selenium) #
 ###########################
 
@@ -59,9 +57,9 @@ for row in rows:
 
 # %%
 
-#########################
-# For loop Construction #
-#########################
+# MAIN SCRAPER LOOP #
+# Loop through links and scrape txt data #
+##########################################
 
 snow_main = pd.DataFrame()
 
@@ -130,19 +128,67 @@ print('Total Sites without txt data: ' + str(no_data_count))
 
 # %%
 
+# Save copy of snow_main
+# For testing
+snow_main_copy = snow_main
+
+
+# %%
+
 # Drop rows with more than half the columns as na
 
 threshold = snow_main.shape[1] / 2
 # snow_main[snow_main.isna().sum(axis=1) >= threshold]
 
 snow_main = snow_main.replace('', pd.NA).dropna(thresh = threshold).reset_index(drop=True)
+snow_main = snow_main.replace(pd.NA, np.nan)
+
+# %%
+
+# Convert snow levels columns to floats
+
+snow_main.iloc[:, 1:13] = snow_main.iloc[:, 1:13].astype(float)
+
+
+# %%
+
+# Fill in missing Snow level data #
+###################################
+
+######### Snow / WE Coefficient #####################################
+# Drop all rows with NAs
+snowfall_vals = snow_main.dropna().reset_index(drop=True)
+
+# Drop all rows with 0 to avoid nan vals and averages weighted to 0
+snowfall_vals = snowfall_vals[~(snowfall_vals == 0).any(axis=1)]
+snowfall_vals= snowfall_vals.reset_index(drop=True)
+
+# Snow to WE coefficient (average of ~400 vals of snowfall/WE)
+snow_we_coeff = np.mean([(snowfall_vals['Jan'] / snowfall_vals['Jan (WE)']), (snowfall_vals['Feb'] / snowfall_vals['Feb (WE)']), (snowfall_vals['Mar'] / snowfall_vals['Mar (WE)']),
+                         (snowfall_vals['Apr'] / snowfall_vals['Apr (WE)']), (snowfall_vals['May'] / snowfall_vals['May (WE)']), (snowfall_vals['Jun'] / snowfall_vals['Jun (WE)'])])
+# snow_we_coeff
+######################################################################
+
+
+######### Fill NaN values with coefficient ###########################
+######### By column: coeff * ['Month' (WE)]
+snow_main['Jan'] = snow_main['Jan'].fillna(snow_we_coeff * snow_main['Jan (WE)'])
+snow_main['Feb'] = snow_main['Feb'].fillna(snow_we_coeff * snow_main['Feb (WE)'])
+snow_main['Mar'] = snow_main['Mar'].fillna(snow_we_coeff * snow_main['Mar (WE)'])
+snow_main['Apr'] = snow_main['Apr'].fillna(snow_we_coeff * snow_main['Apr (WE)'])
+snow_main['May'] = snow_main['May'].fillna(snow_we_coeff * snow_main['May (WE)'])
+snow_main['Jun'] = snow_main['Jun'].fillna(snow_we_coeff * snow_main['Jun (WE)'])
+######################################################################
 
 
 
 # %%
 
-# Merge snow_main and home_df by Site_Name
+# Merge snow_main and home_df by Site_Name:
 
+# Drop SNOW Ntwk
+home_df = home_df[home_df['Ntwk'] == 'SNTL'].reset_index(drop=True)
+# Merger:
 site_snow_main = pd.merge(home_df, snow_main, on='Site_Name', how='inner')
 
 
@@ -157,12 +203,19 @@ site_snow_main = site_snow_main[['Site_Name',
 
 site_snow_main
 
+
+# %%
+
+site_snow_main.to_csv('site_snow.csv', index=None)
+
+
 # %%
 
 ###################
 # Custom Features #
 ###################
 
+# 
 
 
 
@@ -172,22 +225,38 @@ site_snow_main
 # EDA #
 #######
 
+### scatter_geo sites by year installed ###
+
 import plotly.express as px
 
-plot1 = px.scatter_geo(site_snow_main, lat='Lat',
-               lon='Lon', scope='usa', color='installed')
+# plot1 = px.scatter_geo(site_snow_main, lat='Lat',
+#                lon='Lon', scope='usa', 
+#                color='installed', color_continuous_scale='Sunsetdark',
+#                hover_name='Site_Name')
 
-plot1.update_layout(width = 1000, height = 500)
+# plot1.update_layout(width = 1000, height = 500)
 
-# px.scatter_geo(site_snow_main, lat='Lat',
-#                lon='Lon', locations='Site_Name', 
-#                scope='usa', color='installed', size='installed',
-#                template='plotly', title='Test: sites by year installed')
+# lat_foc = 39.3210
+# lon_foc = -111.0937
+# plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
+
+
+### sns scatter January Snow Levels by Elev ###
+
+plot2 = sns.scatterplot(site_snow_main, x = "Elev", y = "Jan", size=0.5)
+plot2 = sns.regplot(x="Elev", y="Jan", data=site_snow_main, scatter=False, color='red')
+plot2 = plt.title('Utah January Snow Levels (in) by Elevation (ft)')
+plot2 = plt.ylabel('SNOTEL Level (in)')
+plot2 = plt.xlabel('Elevation (ft)')
+#plot2 = sns.FacetGrid(site_snow_main)
+# plot2 = plot2.map(sns.regplot, "Elev", "Jan")
+# plot2
+
 
 
 # %%
 
-site_snow_main
+
 
 
 
