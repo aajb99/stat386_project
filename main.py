@@ -206,7 +206,7 @@ site_snow_main
 
 # %%
 
-site_snow_main.to_csv('site_snow.csv', index=None)
+# site_snow_main.to_csv('site_snow.csv', index=None)
 
 
 # %%
@@ -221,7 +221,6 @@ site_snow_main.to_csv('site_snow.csv', index=None)
 
 # %%
 
-#######
 # EDA #
 #######
 
@@ -241,22 +240,96 @@ import plotly.express as px
 # plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
 
 
-### sns scatter January Snow Levels by Elev ###
+### sns scatter subplots Jan, Feb, Apr, May Snow Levels by Elev ###
+# Create the 3x2 subplot matrix
+fig, axes = plt.subplots(3, 2, figsize=(12, 10))
 
-plot2 = sns.scatterplot(site_snow_main, x = "Elev", y = "Jan", size=0.5)
-plot2 = sns.regplot(x="Elev", y="Jan", data=site_snow_main, scatter=False, color='red')
-plot2 = plt.title('Utah January Snow Levels (in) by Elevation (ft)')
-plot2 = plt.ylabel('SNOTEL Level (in)')
-plot2 = plt.xlabel('Elevation (ft)')
-#plot2 = sns.FacetGrid(site_snow_main)
-# plot2 = plot2.map(sns.regplot, "Elev", "Jan")
-# plot2
+scatter1 = sns.scatterplot(site_snow_main, x = "Elev", y = "Jan", size=0.5, ax=axes[0,0])
+sns.regplot(x="Elev", y="Jan", data=site_snow_main, scatter=False, color='red', ax=axes[0,0])
+axes[0,0].set_title('Utah January Snow Levels (in) by Elevation (ft)')
+axes[0,0].set_ylabel('SNOTEL Level (in)')
+axes[0,0].set_xlabel('Elevation (ft)')
 
+scatter2 = sns.scatterplot(site_snow_main, x = "Elev", y = "Feb", size=0.5, ax=axes[0,1])
+sns.regplot(x="Elev", y="Feb", data=site_snow_main, scatter=False, color='red', ax=axes[0,1])
+axes[0,1].set_title('February Snow Levels (in) by Elevation (ft)')
+axes[0,1].set_ylabel('SNOTEL Level (in)')
+axes[0,1].set_xlabel('Elevation (ft)')
+
+scatter3 = sns.scatterplot(site_snow_main, x = "Elev", y = "Mar", size=0.5, ax=axes[1,0])
+sns.regplot(x="Elev", y="Mar", data=site_snow_main, scatter=False, color='red', ax=axes[1,0])
+axes[1,0].set_title('March Snow Levels (in) by Elevation (ft)')
+axes[1,0].set_ylabel('SNOTEL Level (in)')
+axes[1,0].set_xlabel('Elevation (ft)')
+
+scatter4 = sns.scatterplot(site_snow_main, x = "Elev", y = "Apr", size=0.5, ax=axes[1,1])
+sns.regplot(x="Elev", y="Apr", data=site_snow_main, scatter=False, color='red', ax=axes[1,1])
+axes[1,1].set_title('April Snow Levels (in) by Elevation (ft)')
+axes[1,1].set_ylabel('SNOTEL Level (in)')
+axes[1,1].set_xlabel('Elevation (ft)')
+
+scatter5 = sns.scatterplot(site_snow_main, x = "Elev", y = "May", size=0.5, ax=axes[2,0])
+sns.regplot(x="Elev", y="May", data=site_snow_main, scatter=False, color='red', ax=axes[2,0])
+axes[2,0].set_title('May Snow Levels (in) by Elevation (ft)')
+axes[2,0].set_ylabel('SNOTEL Level (in)')
+axes[2,0].set_xlabel('Elevation (ft)')
+
+# Delete 6th plot
+fig.delaxes(axes[2, 1])
+
+plt.tight_layout()
+
+# plt.show()
+
+plt.savefig("snow_elev_scatter.png")
+
+
+
+### sns scatter subplots Jan, Feb, Apr, May Snow Levels by Elev ###
+# Create the 3x2 subplot matrix
+fig, axes = plt.subplots(3, 2, figsize=(12, 10))
+
+scatter1 = sns.scatterplot(site_snow_main, x = "Elev", y = "Jan (WE)", size=0.5, ax=axes[0,0])
+sns.regplot(x="Elev", y="Jan (WE)", data=site_snow_main, scatter=False, color='red', ax=axes[0,0])
+axes[0,0].set_title('Utah January Water Equiv Levels (in) by Elevation (ft)')
+axes[0,0].set_ylabel('Level (in)')
+axes[0,0].set_xlabel('Elevation (ft)')
+
+scatter2 = sns.scatterplot(site_snow_main, x = "Elev", y = "Feb (WE)", size=0.5, ax=axes[0,1])
+sns.regplot(x="Elev", y="Feb (WE)", data=site_snow_main, scatter=False, color='red', ax=axes[0,1])
+axes[0,1].set_title('February Water Equiv Levels (in) by Elevation (ft)')
+axes[0,1].set_ylabel('Level (in)')
+axes[0,1].set_xlabel('Elevation (ft)')
+
+scatter3 = sns.scatterplot(site_snow_main, x = "Elev", y = "Mar (WE)", size=0.5, ax=axes[1,0])
+sns.regplot(x="Elev", y="Mar (WE)", data=site_snow_main, scatter=False, color='red', ax=axes[1,0])
+axes[1,0].set_title('March Water Equiv Levels (in) by Elevation (ft)')
+axes[1,0].set_ylabel('Level (in)')
+axes[1,0].set_xlabel('Elevation (ft)')
+
+scatter4 = sns.scatterplot(site_snow_main, x = "Elev", y = "Apr (WE)", size=0.5, ax=axes[1,1])
+sns.regplot(x="Elev", y="Apr (WE)", data=site_snow_main, scatter=False, color='red', ax=axes[1,1])
+axes[1,1].set_title('April Water Equiv Levels (in) by Elevation (ft)')
+axes[1,1].set_ylabel('Level (in)')
+axes[1,1].set_xlabel('Elevation (ft)')
+
+scatter5 = sns.scatterplot(site_snow_main, x = "Elev", y = "May (WE)", size=0.5, ax=axes[2,0])
+sns.regplot(x="Elev", y="May (WE)", data=site_snow_main, scatter=False, color='red', ax=axes[2,0])
+axes[2,0].set_title('May Water Equiv Levels (in) by Elevation (ft)')
+axes[2,0].set_ylabel('Level (in)')
+axes[2,0].set_xlabel('Elevation (ft)')
+
+# Delete 6th plot
+fig.delaxes(axes[2, 1])
+
+plt.tight_layout()
+
+# plt.show()
+
+plt.savefig("we_elev_scatter.png")
 
 
 # %%
-
-
 
 
 
