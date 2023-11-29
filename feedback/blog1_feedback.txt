@@ -1,1 +1,10 @@
 Feedback on scraping/data cleaning blog post:
+
+Jackson Passey: The post looks really good, I like how succinct and laid out the steps are. 
+    My one improvement for you would be to change the header photo if possible -- something 
+    more related to the project like snow rather than a computer.
+Response: Switched out the header photo for something more appropriate.
+
+Nate Mohun: Looks great, my only suggestion is to increase the size of some of the images, 
+    they are kind of hard to see without zooming in a bunch.
+Response: Resized the images to be more readable.
