@@ -216,16 +216,63 @@ site_snow_main
 # Custom Features #
 ###################
 
-
-
-
+# Levels by Decade Column:
+site_snow_main['Decade'] = ''
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(1979, 1990)), 'Decade'] = '1980'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(1990, 2000)), 'Decade'] = '1990'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2000, 2010)), 'Decade'] = '2000'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2010, 2020)), 'Decade'] = '2010'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade'] = '2020'
 
 
 
 # %%
 
-# EDA #
-#######
+# EDA: Monthly Correlation Heatmaps #
+#####################################
+
+# January:
+# site_snow_main_jan = site_snow_main.iloc[:, list(range(1, 9)) + [19]].dropna()
+# site_snow_main_jan['Decade'] = pd.to_numeric(site_snow_main_jan['Decade'], errors='coerce')
+# corr_matrix = site_snow_main_jan.corr()
+# sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+# plt.title('Jan Correlation Heatmap')
+# plt.xticks(rotation=1, fontsize=8)
+
+# February:
+# site_snow_main_feb = site_snow_main.iloc[:, list(range(1, 7)) + [9] + [10] + [19]].dropna()
+# site_snow_main_feb['Decade'] = pd.to_numeric(site_snow_main_feb['Decade'], errors='coerce')
+# corr_matrix = site_snow_main_feb.corr()
+# sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+# plt.title('Feb Correlation Heatmap')
+# plt.xticks(rotation=1, fontsize=8)
+
+# April:
+# site_snow_main_apr = site_snow_main.iloc[:, list(range(1, 7)) + [13] + [14] + [19]].dropna()
+# site_snow_main_apr['Decade'] = pd.to_numeric(site_snow_main_apr['Decade'], errors='coerce')
+# corr_matrix = site_snow_main_apr.corr()
+# sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+# plt.title('Apr Correlation Heatmap')
+# plt.xticks(rotation=1, fontsize=8)
+
+# May:
+site_snow_main_may = site_snow_main.iloc[:, list(range(1, 7)) + [15] + [16] + [19]].dropna()
+site_snow_main_may['Decade'] = pd.to_numeric(site_snow_main_may['Decade'], errors='coerce')
+corr_matrix = site_snow_main_may.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+plt.title('May Correlation Heatmap')
+plt.xticks(rotation=1, fontsize=8)
+
+
+# %%
+
+site_snow_main
+
+
+# %%
+
+# EDA: Scatterplots of snow levels by elevation #
+#################################################
 
 ### sns scatter subplots Jan, Feb, Apr, May Snow Levels by Elev ###
 # Create the 3x2 subplot matrix
@@ -336,17 +383,7 @@ plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=
 
 # %%
 
-### Distributions:  ###
-
-#type(site_snow_main['Water Year'].iloc[0])
-
-site_snow_main['Decade'] = ''
-
-site_snow_main.loc[site_snow_main['Water Year'].isin(range(1979, 1990)), 'Decade'] = '80'
-site_snow_main.loc[site_snow_main['Water Year'].isin(range(1990, 2000)), 'Decade'] = '90'
-site_snow_main.loc[site_snow_main['Water Year'].isin(range(2000, 2010)), 'Decade'] = '00'
-site_snow_main.loc[site_snow_main['Water Year'].isin(range(2010, 2020)), 'Decade'] = '10'
-site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade'] = '20'
+### Distributions: Snow levels by decade, each month ###
 
 # sns.violinplot(x='Decade', y='Jan', data=site_snow_main, order=['80', '90', '00', '10', '20'])
 # plt.title('January Across Decades')
@@ -358,7 +395,8 @@ site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade
 # plt.title('April Across Decades')
 # sns.violinplot(x='Decade', y='May', data=site_snow_main, order=['80', '90', '00', '10', '20'])
 # plt.title('May Across Decades')
-sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['80', '90', '00', '10', '20'], 
+               palette='Blues_r', edgecolor='black')
 plt.title('June Across Decades')
 
 
