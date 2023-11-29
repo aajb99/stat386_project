@@ -201,6 +201,8 @@ site_snow_main = site_snow_main[['Site_Name',
        'County', 'Water Year', 'Jan', 'Jan (WE)', 'Feb', 'Feb (WE)', 'Mar',
        'Mar (WE)', 'Apr', 'Apr (WE)', 'May', 'May (WE)', 'Jun', 'Jun (WE)']]
 
+site_snow_main['Water Year'] = site_snow_main['Water Year'].astype(int)
+
 site_snow_main
 
 
@@ -211,11 +213,12 @@ site_snow_main
 
 # %%
 
-###################
 # Custom Features #
 ###################
 
-# 
+
+
+
 
 
 
@@ -223,22 +226,6 @@ site_snow_main
 
 # EDA #
 #######
-
-### scatter_geo sites by year installed ###
-
-import plotly.express as px
-
-# plot1 = px.scatter_geo(site_snow_main, lat='Lat',
-#                lon='Lon', scope='usa', 
-#                color='installed', color_continuous_scale='Sunsetdark',
-#                hover_name='Site_Name')
-
-# plot1.update_layout(width = 1000, height = 500)
-
-# lat_foc = 39.3210
-# lon_foc = -111.0937
-# plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
-
 
 ### sns scatter subplots Jan, Feb, Apr, May Snow Levels by Elev ###
 # Create the 3x2 subplot matrix
@@ -281,7 +268,7 @@ plt.tight_layout()
 
 # plt.show()
 
-plt.savefig("snow_elev_scatter.png")
+# plt.savefig("snow_elev_scatter.png")
 
 
 
@@ -326,16 +313,59 @@ plt.tight_layout()
 
 # plt.show()
 
-plt.savefig("we_elev_scatter.png")
+# plt.savefig("we_elev_scatter.png")
 
 
 # %%
 
+### scatter_geo sites by year installed ###
+
+import plotly.express as px
+
+plot1 = px.scatter_geo(site_snow_main, lat='Lat',
+               lon='Lon', scope='usa', 
+               color='installed', color_continuous_scale='Sunsetdark',
+               hover_name='Site_Name')
+
+plot1.update_layout(width = 1000, height = 500)
+
+lat_foc = 39.3210
+lon_foc = -111.0937
+plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
 
 
 # %%
 
-site_snow_main['installed'].value_counts()
+### Distributions:  ###
+
+#type(site_snow_main['Water Year'].iloc[0])
+
+site_snow_main['Decade'] = ''
+
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(1979, 1990)), 'Decade'] = '80'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(1990, 2000)), 'Decade'] = '90'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2000, 2010)), 'Decade'] = '00'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2010, 2020)), 'Decade'] = '10'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade'] = '20'
+
+# sns.violinplot(x='Decade', y='Jan', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# plt.title('January Across Decades')
+# sns.violinplot(x='Decade', y='Feb', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# plt.title('February Across Decades')
+# sns.violinplot(x='Decade', y='Mar', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# plt.title('March Across Decades')
+# sns.violinplot(x='Decade', y='Apr', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# plt.title('April Across Decades')
+# sns.violinplot(x='Decade', y='May', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# plt.title('May Across Decades')
+sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+plt.title('June Across Decades')
+
+
+# %%
+
+site_snow_main['Water Year'].value_counts()
+
 
 # %%
 
