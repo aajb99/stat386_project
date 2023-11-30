@@ -216,13 +216,22 @@ site_snow_main
 # Custom Features #
 ###################
 
-# Levels by Decade Column:
+# Snow Level Measurements by Decade Column:
 site_snow_main['Decade'] = ''
 site_snow_main.loc[site_snow_main['Water Year'].isin(range(1979, 1990)), 'Decade'] = '1980'
 site_snow_main.loc[site_snow_main['Water Year'].isin(range(1990, 2000)), 'Decade'] = '1990'
 site_snow_main.loc[site_snow_main['Water Year'].isin(range(2000, 2010)), 'Decade'] = '2000'
 site_snow_main.loc[site_snow_main['Water Year'].isin(range(2010, 2020)), 'Decade'] = '2010'
 site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade'] = '2020'
+
+
+# Installments by Decade Column:
+site_snow_main['Decade Inst'] = ''
+site_snow_main.loc[site_snow_main['installed'].isin(range(1979, 1990)), 'Decade Inst'] = '1980'
+site_snow_main.loc[site_snow_main['installed'].isin(range(1990, 2000)), 'Decade Inst'] = '1990'
+site_snow_main.loc[site_snow_main['installed'].isin(range(2000, 2010)), 'Decade Inst'] = '2000'
+site_snow_main.loc[site_snow_main['installed'].isin(range(2010, 2020)), 'Decade Inst'] = '2010'
+site_snow_main.loc[site_snow_main['installed'].isin(range(2020, 2024)), 'Decade Inst'] = '2020'
 
 
 
@@ -369,35 +378,46 @@ plt.tight_layout()
 
 import plotly.express as px
 
-plot1 = px.scatter_geo(site_snow_main, lat='Lat',
+# plot1 = px.scatter_geo(site_snow_main, lat='Lat',
+#                lon='Lon', scope='usa', 
+#                color='installed', color_continuous_scale='Sunsetdark',
+#                hover_name='Site_Name')
+
+# plot1.update_layout(width = 1000, height = 500)
+
+# lat_foc = 39.3210
+# lon_foc = -111.0937
+# plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
+
+plot2 = px.scatter_geo(site_snow_main, lat='Lat',
                lon='Lon', scope='usa', 
-               color='installed', color_continuous_scale='Sunsetdark',
+               color='Decade Inst', color_continuous_scale='Sunsetdark',
                hover_name='Site_Name')
 
-plot1.update_layout(width = 1000, height = 500)
+plot2.update_layout(width = 1000, height = 500)
+plot2.update_traces(marker=dict(size=4))
 
 lat_foc = 39.3210
 lon_foc = -111.0937
-plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
+plot2.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
 
 
 # %%
 
 ### Distributions: Snow levels by decade, each month ###
 
-# sns.violinplot(x='Decade', y='Jan', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# sns.violinplot(x='Decade', y='Jan', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
 # plt.title('January Across Decades')
-# sns.violinplot(x='Decade', y='Feb', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# sns.violinplot(x='Decade', y='Feb', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
 # plt.title('February Across Decades')
-# sns.violinplot(x='Decade', y='Mar', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# sns.violinplot(x='Decade', y='Mar', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
 # plt.title('March Across Decades')
-# sns.violinplot(x='Decade', y='Apr', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# sns.violinplot(x='Decade', y='Apr', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
 # plt.title('April Across Decades')
-# sns.violinplot(x='Decade', y='May', data=site_snow_main, order=['80', '90', '00', '10', '20'])
+# sns.violinplot(x='Decade', y='May', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
 # plt.title('May Across Decades')
-sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['80', '90', '00', '10', '20'], 
-               palette='Blues_r', edgecolor='black')
-plt.title('June Across Decades')
+# sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('June Across Decades')
 
 
 # %%
@@ -411,5 +431,6 @@ site_snow_main.columns
 
 # %%
 
-site_snow_main
+len(site_snow_main[site_snow_main['Water Year'] == 1982])
+
 # %%
