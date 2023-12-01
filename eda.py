@@ -45,6 +45,16 @@ site_snow_main.loc[site_snow_main['installed'].isin(range(2000, 2010)), 'Decade 
 site_snow_main.loc[site_snow_main['installed'].isin(range(2010, 2020)), 'Decade Inst'] = '2010'
 site_snow_main.loc[site_snow_main['installed'].isin(range(2020, 2024)), 'Decade Inst'] = '2020'
 
+# Jan sum by County Column:
+site_snow_main['County Jan Avg'] = ''
+for county in site_snow_main['County'].unique():
+    county_avg = site_snow_main[site_snow_main['County'] == county]['Jan'].mean()
+    
+    site_snow_main.loc[site_snow_main['County'] == county, 'County Jan Avg'] = county_avg
+
+site_snow_main
+
+
 
 
 # %%
@@ -218,6 +228,32 @@ plot2.update_layout(geo = dict(projection_scale=4.75, center=dict(lat=lat_foc, l
 
 
 # %%
+
+# Choropleth map: snow levels
+
+geojson = 'https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'
+
+choro_map = px.choropleth(site_snow_main, 
+                          geojson=geojson,
+                          locations='County',
+                          color='County Jan Avg',
+                          hover_name='Site_Name',
+                          color_continuous_scale='rocket',
+                          scope='usa',
+                          labels={'County Jan Avg': 'Avg Snow Level in January'},
+                          hover_data='County Jan Avg'
+                          )
+
+choro_map.update_layout(width = 1000, height = 500)
+
+lat_foc = 39.61
+lon_foc = -111.0937
+choro_map.update_layout(geo = dict(projection_scale=4.75, center=dict(lat=lat_foc, lon=lon_foc)))
+
+
+# %%
+
+site_snow_main['County Jan Avg'].value_counts()
 
 # site_snow_main[site_snow_main['installed'] == 1979]['Site_Name'].unique()
 
