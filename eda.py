@@ -38,7 +38,8 @@ site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade
 
 # Installments by Decade Column:
 site_snow_main['Decade Inst'] = ''
-site_snow_main.loc[site_snow_main['installed'].isin(range(1979, 1990)), 'Decade Inst'] = '1980'
+site_snow_main.loc[site_snow_main['installed'].isin(range(1970, 1980)), 'Decade Inst'] = '1978/79'
+site_snow_main.loc[site_snow_main['installed'].isin(range(1980, 1990)), 'Decade Inst'] = '1980'
 site_snow_main.loc[site_snow_main['installed'].isin(range(1990, 2000)), 'Decade Inst'] = '1990'
 site_snow_main.loc[site_snow_main['installed'].isin(range(2000, 2010)), 'Decade Inst'] = '2000'
 site_snow_main.loc[site_snow_main['installed'].isin(range(2010, 2020)), 'Decade Inst'] = '2010'
@@ -189,28 +190,37 @@ plt.tight_layout()
 
 import plotly.express as px
 
-# plot1 = px.scatter_geo(site_snow_main, lat='Lat',
-#                lon='Lon', scope='usa', 
-#                color='installed', color_continuous_scale='Sunsetdark',
-#                hover_name='Site_Name')
+plot1 = px.scatter_geo(site_snow_main, lat='Lat',
+               lon='Lon', scope='usa', 
+               color='installed', color_continuous_scale='Sunsetdark',
+               hover_name='Site_Name')
 
-# plot1.update_layout(width = 1000, height = 500)
+plot1.update_layout(width = 1000, height = 500)
+plot1.update_traces(marker=dict(size=4))
 
-# lat_foc = 39.3210
-# lon_foc = -111.0937
-# plot1.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
+lat_foc = 39.61
+lon_foc = -111.0937
+plot1.update_layout(geo = dict(projection_scale=4.75, center=dict(lat=lat_foc, lon=lon_foc)))
 
 plot2 = px.scatter_geo(site_snow_main, lat='Lat',
                lon='Lon', scope='usa', 
-               color='Decade Inst', color_continuous_scale='Sunsetdark',
+               color='Decade Inst', 
+               category_orders={'Decade Inst': ['2010', '2000', '1990', '1980', '1978/79']}, 
+               color_discrete_sequence=['red', 'gold', 'green', 'blue', 'purple'],
                hover_name='Site_Name')
 
 plot2.update_layout(width = 1000, height = 500)
 plot2.update_traces(marker=dict(size=4))
 
-lat_foc = 39.3210
+lat_foc = 39.61
 lon_foc = -111.0937
-plot2.update_layout(geo = dict(projection_scale=4, center=dict(lat=lat_foc, lon=lon_foc)))
+plot2.update_layout(geo = dict(projection_scale=4.75, center=dict(lat=lat_foc, lon=lon_foc)))
+
+
+# %%
+
+# site_snow_main[site_snow_main['installed'] == 1979]['Site_Name'].unique()
+
 
 
 # %%
