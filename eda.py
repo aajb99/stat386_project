@@ -284,7 +284,7 @@ site_snow_main['Water Year'].value_counts()
 
 # %%
 
-site_snow_main.columns
+site_snow_main
 
 # %%
 
@@ -292,3 +292,59 @@ len(site_snow_main[site_snow_main['Water Year'] == 1982])
 
 # %%
 
+# Elevation by decade:
+
+sns.distplot(site_snow_main[site_snow_main['Decade'] == '1980']['Elev'], kde=True)
+#sns.distplot(site_snow_main[site_snow_main['Decade'] == '1990']['Elev'], kde=True)
+sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['Elev'], kde=True)
+#sns.distplot(site_snow_main[site_snow_main['Decade'] == '2010']['Elev'], kde=True)
+sns.distplot(site_snow_main[site_snow_main['Decade'] == '2020']['Elev'], kde=True)
+
+plt.show()
+
+
+# %%
+
+# January Snow Levels by decade:
+
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Jan'], kde=True)
+# sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['Jan'], kde=True)
+
+plt.show()
+
+
+# %%
+
+# February Snow Levels by decade:
+
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Feb'], kde=True)
+# sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['Feb'], kde=True)
+
+plt.show()
+
+
+# %%
+
+# Apr Snow Levels by decade:
+
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Apr'], kde=True)
+# sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['Apr'], kde=True)
+
+plt.show()
+
+
+# %%
+
+# May Snow Levels by decade:
+
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['May'], kde=True)
+# sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['May'], kde=True)
+
+plt.show()
+
+
+# %%
