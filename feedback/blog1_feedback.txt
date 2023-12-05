@@ -1,4 +1,4 @@
-Feedback on scraping/data cleaning blog post:
+Feedback on scraping/data cleaning blog post (first blog post):
 
 Jackson Passey: The post looks really good, I like how succinct and laid out the steps are. 
     My one improvement for you would be to change the header photo if possible -- something 
@@ -8,3 +8,7 @@ Response: Switched out the header photo for something more appropriate.
 Nate Mohun: Looks great, my only suggestion is to increase the size of some of the images, 
     they are kind of hard to see without zooming in a bunch.
 Response: Resized the images to be more readable.
+
+Garrett Springer: Looks good, but you should include a link to your data and code repository
+    for the project.
+Response: Added a link on my blog to my data and code repository (github).
