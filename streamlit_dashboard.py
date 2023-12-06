@@ -27,6 +27,29 @@ st.title('Utah Snow Accumulation Study: Patterns 1979-2023')
 ### Site Installment Map
 st.subheader('Correlation Heatmaps: By Month, Observing Key Factors')
 
+selected_month = st.selectbox('Select a Month:', ['Jan', 'Feb', 'Apr', 'May'])
+
+fig_h1 = Image.open('./images/jan_heatmap.png')
+fig_h2 = Image.open('./images/feb_heatmap.png')
+fig_h3 = Image.open('./images/apr_heatmap.png')
+fig_h4 = Image.open('./images/may_heatmap.png')
+
+if selected_month == 'Jan':
+    st.image(fig_h1, caption='January',
+             use_column_width=True)
+    st.empty()
+elif selected_month == 'Feb':
+    st.image(fig_h2, caption='February',
+             use_column_width=True)
+    st.empty()
+elif selected_month == 'Apr':
+    st.image(fig_h3, caption='April',
+             use_column_width=True)
+    st.empty()
+elif selected_month == 'May':
+    st.image(fig_h4, caption='May',
+             use_column_width=True)
+    st.empty()
 
 
 ########################
