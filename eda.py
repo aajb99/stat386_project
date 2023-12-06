@@ -316,23 +316,19 @@ len(site_snow_main[site_snow_main['Water Year'] == 1982])
 
 # Elevation by decade:
 
-# elev1980 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '1980']['Elev'], kde=True)
-# #sns.distplot(site_snow_main[site_snow_main['Decade'] == '1990']['Elev'], kde=True)
-# elev2000 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['Elev'], kde=True)
-# #sns.distplot(site_snow_main[site_snow_main['Decade'] == '2010']['Elev'], kde=True)
-# elev2020 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '2020']['Elev'], kde=True)
-
-# plt.show()
-
-fig1980 = px.histogram(site_snow_main[site_snow_main['Decade'] == '1980'], 
-                       x='Elev', nbins=30, title='Elevation Distribution: 1980', 
-                       opacity=0.5, histnorm='probability density', color_discrete_sequence=['red'])
-fig2000 = px.histogram(site_snow_main[site_snow_main['Decade'] == '2000'], 
-                       x='Elev', nbins=30, title='Elevation Distribution: 2000', 
-                       opacity=0.5, histnorm='probability density', color_discrete_sequence=['green'])
-fig2020 = px.histogram(site_snow_main[site_snow_main['Decade'] == '2020'], 
-                       x='Elev', nbins=30, title='Elevation Distribution: 2020', 
-                       opacity=0.5, histnorm='probability density', color_discrete_sequence=['blue'])
+elev_hist = px.histogram(site_snow_main[(site_snow_main['Decade'] == '1980') | 
+                                      (site_snow_main['Decade'] == '2000') |
+                                       (site_snow_main['Decade'] == '2020')], 
+                       x='Elev', nbins=30, title='Elevation Distributions: 1980s, 2000s (cumul.), 2020s (cumul.)', 
+                       opacity=0.5, histnorm='probability density', color = 'Decade', marginal='kde',
+                       )
+elev_hist.update_layout(barmode='overlay')
+# fig2000 = px.histogram(site_snow_main[site_snow_main['Decade'] == '2000'], 
+#                        x='Elev', nbins=30, title='Elevation Distribution: 2000', 
+#                        opacity=0.5, histnorm='probability density', color_discrete_sequence=['green'])
+# fig2020 = px.histogram(site_snow_main[site_snow_main['Decade'] == '2020'], 
+#                        x='Elev', nbins=30, title='Elevation Distribution: 2020', 
+#                        opacity=0.5, histnorm='probability density', color_discrete_sequence=['blue'])
 
 
 # %%
@@ -379,4 +375,6 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_ma
 plt.show()
 
 
+# %%
+site_snow_main
 # %%

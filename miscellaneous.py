@@ -486,3 +486,15 @@ plt.tight_layout()
 
 plt.show()
 # plt.savefig("we_elev_scatter.png")
+
+
+
+
+
+############## Elev hist extra code ##############################################################################################
+
+# elev1980 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '1980']['Elev'], kde=True)
+# #sns.distplot(site_snow_main[site_snow_main['Decade'] == '1990']['Elev'], kde=True)
+# elev2000 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['Elev'], kde=True)
+# #sns.distplot(site_snow_main[site_snow_main['Decade'] == '2010']['Elev'], kde=True)
+# elev2020 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '2020']['Elev'], kde=True)

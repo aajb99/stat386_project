@@ -109,20 +109,18 @@ elif selected_unit == 'Decade':
 ### Elevation by Decade
 st.subheader('Elevation by Decade')
 
-selected_decade = st.selectbox('Select a decade (cumulative)', ['1980', '2000 (cumulative)', '2020 (cumulative)'])
+selected_decs2 = st.multiselect('Select a decade (cumulative)', ['1980', '2000', '2020'],
+                                 ['1980', '2000', '2020'])
+df_dec_selected = eda.site_snow_main[eda.site_snow_main['Decade'].isin(selected_decs2)]
 
-if selected_decade == '1980':
-    st.write('SNOTEL Sites Elevation Distribution: 1980')
-    dist1 = eda.fig1980
-    st.plotly_chart(dist1, use_container_width=True)
-elif selected_decade == '2000 (cumulative)':
-    st.write('SNOTEL Sites Elevation Distribution: 2000')
-    dist2 = eda.fig2000
-    st.plotly_chart(dist2, use_container_width=True)
-elif selected_decade == '2020 (cumulative)':
-    st.write('SNOTEL Sites Elevation Distribution: 2020')
-    dist3 = eda.fig2020
-    st.plotly_chart(dist3, use_container_width=True)
+elev_hist = px.histogram(df_dec_selected, 
+                       x='Elev', nbins=30, title='Elevation Distributions: 1980s, 2000s (cumul.), 2020s (cumul.)', 
+                       opacity=0.5, histnorm='probability density', color = 'Decade', color_discrete_sequence=['forestgreen', 'cornflowerblue', 'coral'],
+                       category_orders={'Decade': ['2020', '2000', '1980']}
+                       )
+elev_hist.update_layout(barmode='overlay')
+
+st.plotly_chart(elev_hist, use_container_width=True)
 
 
 ###########################################################
