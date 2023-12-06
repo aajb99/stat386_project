@@ -16,6 +16,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import time
 from sklearn.preprocessing import MinMaxScaler
+import plotly.figure_factory as ff
 pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 
@@ -333,46 +334,63 @@ elev_hist.update_layout(barmode='overlay')
 
 # %%
 
+site_snow_main['Water Year'].max()
+
+
+# %%
+
 # January Snow Levels by decade:
 
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Jan'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Jan'], kde=True, label='1979 - 1999')
 # sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['Jan'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['Jan'], kde=True, label='2010 - 2023')
 
-plt.show()
+plt.legend()
+plt.savefig("snowpack_jan_decade.png")
+
+# plt.show()
 
 
 # %%
 
 # February Snow Levels by decade:
 
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Feb'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Feb'], kde=True, label='1979 - 1999')
 # sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['Feb'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['Feb'], kde=True, label='2010 - 2023')
 
-plt.show()
+plt.legend()
+plt.savefig("snowpack_feb_decade.png")
+# plt.legend()
+# plt.show()
 
 
 # %%
 
 # Apr Snow Levels by decade:
 
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Apr'], kde=False)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['Apr'], kde=True, label='1979 - 1999')
 # sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['Apr'], kde=False)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['Apr'], kde=True, label='2010 - 2023')
 
-plt.show()
+plt.legend()
+plt.savefig("snowpack_apr_decade.png")
+# plt.legend()
+# plt.show()
 
 
 # %%
 
 # May Snow Levels by decade:
 
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['May'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_main['Decade'] == '1990')]['May'], kde=True, label='1979 - 1999')
 # sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['May'], kde=True)
-sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2000') | (site_snow_main['Decade'] == '2010')]['May'], kde=True)
+sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['May'], kde=True, label='2010 - 2023')
 
-plt.show()
+plt.legend()
+plt.savefig("snowpack_may_decade.png")
+# plt.legend()
+# plt.show()
 
 
 # %%
