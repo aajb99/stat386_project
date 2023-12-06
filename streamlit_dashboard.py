@@ -148,7 +148,23 @@ st.subheader('Snowpack by Month: Comparing Grouped Decades')
 
 selected_month = st.selectbox('Select a Month:', ['Jan', 'Feb', 'Apr', 'May'])
 
+fig_smd1 = Image.open('./images/snowpack_jan_decade.png')
+fig_smd2 = Image.open('./images/snowpack_feb_decade.png')
+fig_smd3 = Image.open('./images/snowpack_apr_decade.png')
+fig_smd4 = Image.open('./images/snowpack_may_decade.png')
 
+if selected_month == 'Jan':
+    st.image(fig_smd1, caption='January',
+             use_column_width=True)
+elif selected_month == 'Feb':
+    st.image(fig_smd2, caption='February',
+             use_column_width=True)
+elif selected_month == 'Apr':
+    st.image(fig_smd3, caption='April',
+             use_column_width=True)
+elif selected_month == 'May':
+    st.image(fig_smd4, caption='May',
+             use_column_width=True)
 
 # snowpack_hist_early = sns.distplot(eda.site_snow_main[(eda.site_snow_main['Decade'] == '1980') | (eda.site_snow_main['Decade'] == '1990')][selected_month], kde=True, label='1979 - 1999')
 # snowpack_hist_late = sns.distplot(eda.site_snow_main[(eda.site_snow_main['Decade'] == '2010') | (eda.site_snow_main['Decade'] == '2020')][selected_month], kde=True, label='2010 - 2023')

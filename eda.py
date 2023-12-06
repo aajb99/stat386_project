@@ -346,7 +346,7 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_ma
 sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['Jan'], kde=True, label='2010 - 2023')
 
 plt.legend()
-plt.savefig("snowpack_jan_decade.png")
+plt.savefig("./images/snowpack_jan_decade.png")
 
 # plt.show()
 
@@ -360,7 +360,7 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_ma
 sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['Feb'], kde=True, label='2010 - 2023')
 
 plt.legend()
-plt.savefig("snowpack_feb_decade.png")
+plt.savefig("./images/snowpack_feb_decade.png")
 # plt.legend()
 # plt.show()
 
@@ -374,7 +374,7 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_ma
 sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['Apr'], kde=True, label='2010 - 2023')
 
 plt.legend()
-plt.savefig("snowpack_apr_decade.png")
+plt.savefig("./images/snowpack_apr_decade.png")
 # plt.legend()
 # plt.show()
 
@@ -388,7 +388,7 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '1980') | (site_snow_ma
 sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_main['Decade'] == '2020')]['May'], kde=True, label='2010 - 2023')
 
 plt.legend()
-plt.savefig("snowpack_may_decade.png")
+plt.savefig("./images/snowpack_may_decade.png")
 # plt.legend()
 # plt.show()
 
