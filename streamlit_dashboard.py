@@ -139,6 +139,8 @@ st.image(fig_scatter,
                         '.....',
          use_column_width=True)
 
+st.empty()
+
 # st.pyplot(img_scatter, use_container_width=True)
 
 
@@ -156,24 +158,28 @@ fig_smd4 = Image.open('./images/snowpack_may_decade.png')
 if selected_month == 'Jan':
     st.image(fig_smd1, caption='January',
              use_column_width=True)
+    st.empty()
 elif selected_month == 'Feb':
     st.image(fig_smd2, caption='February',
              use_column_width=True)
+    st.empty()
 elif selected_month == 'Apr':
     st.image(fig_smd3, caption='April',
              use_column_width=True)
+    st.empty()
 elif selected_month == 'May':
     st.image(fig_smd4, caption='May',
              use_column_width=True)
+    st.empty()
 
 # snowpack_hist_early = sns.distplot(eda.site_snow_main[(eda.site_snow_main['Decade'] == '1980') | (eda.site_snow_main['Decade'] == '1990')][selected_month], kde=True, label='1979 - 1999')
 # snowpack_hist_late = sns.distplot(eda.site_snow_main[(eda.site_snow_main['Decade'] == '2010') | (eda.site_snow_main['Decade'] == '2020')][selected_month], kde=True, label='2010 - 2023')
 # plt.legend()
-plt.savefig("snowpack_month_decade.png")
+# plt.savefig("snowpack_month_decade.png")
 
-fig_snow_month_decade = Image.open('./images/snowpack_month_decade.png')
+# fig_snow_month_decade = Image.open('./images/snowpack_month_decade.png')
 
-st.image(fig_snow_month_decade)
+# st.image(fig_snow_month_decade)
 
 
 # Side by side (doesn't work with map)
