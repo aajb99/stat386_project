@@ -22,6 +22,13 @@ pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 st.title('Utah Snow Accumulation Study: Patterns 1979-2023')
 
+
+########################
+### Site Installment Map
+st.subheader('Correlation Heatmaps: By Month, Observing Key Factors')
+
+
+
 ########################
 ### Site Installment Map
 st.subheader('SNOTEL Site Installment Maps')
@@ -172,14 +179,6 @@ elif selected_month == 'May':
              use_column_width=True)
     st.empty()
 
-# snowpack_hist_early = sns.distplot(eda.site_snow_main[(eda.site_snow_main['Decade'] == '1980') | (eda.site_snow_main['Decade'] == '1990')][selected_month], kde=True, label='1979 - 1999')
-# snowpack_hist_late = sns.distplot(eda.site_snow_main[(eda.site_snow_main['Decade'] == '2010') | (eda.site_snow_main['Decade'] == '2020')][selected_month], kde=True, label='2010 - 2023')
-# plt.legend()
-# plt.savefig("snowpack_month_decade.png")
-
-# fig_snow_month_decade = Image.open('./images/snowpack_month_decade.png')
-
-# st.image(fig_snow_month_decade)
 
 
 # Side by side (doesn't work with map)

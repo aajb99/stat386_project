@@ -85,36 +85,52 @@ site_snow_main
 #####################################
 
 # January:
-# site_snow_main_jan = site_snow_main.iloc[:, list(range(1, 9)) + [19]].dropna()
-# site_snow_main_jan['Decade'] = pd.to_numeric(site_snow_main_jan['Decade'], errors='coerce')
-# corr_matrix = site_snow_main_jan.corr()
-# sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
-# plt.title('Jan Correlation Heatmap')
-# plt.xticks(rotation=1, fontsize=8)
+site_snow_main_jan = site_snow_main.iloc[:, list(range(1, 9)) + [19]].dropna()
+site_snow_main_jan['Decade'] = pd.to_numeric(site_snow_main_jan['Decade'], errors='coerce')
+corr_matrix = site_snow_main_jan.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+plt.figure(figsize=(10, 8)) 
+plt.title('January (early season) Correlation Heatmap')
+plt.xticks(rotation=1, fontsize=8)
+
+plt.savefig("./images/jan_heatmap.png")
+plt.clf()
 
 # February:
-# site_snow_main_feb = site_snow_main.iloc[:, list(range(1, 7)) + [9] + [10] + [19]].dropna()
-# site_snow_main_feb['Decade'] = pd.to_numeric(site_snow_main_feb['Decade'], errors='coerce')
-# corr_matrix = site_snow_main_feb.corr()
-# sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
-# plt.title('Feb Correlation Heatmap')
-# plt.xticks(rotation=1, fontsize=8)
+site_snow_main_feb = site_snow_main.iloc[:, list(range(1, 7)) + [9] + [10] + [19]].dropna()
+site_snow_main_feb['Decade'] = pd.to_numeric(site_snow_main_feb['Decade'], errors='coerce')
+corr_matrix = site_snow_main_feb.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+plt.figure(figsize=(10, 8)) 
+plt.title('February (early season) Correlation Heatmap')
+plt.xticks(rotation=1, fontsize=8)
+
+plt.savefig("./images/feb_heatmap.png")
+plt.clf()
 
 # April:
-# site_snow_main_apr = site_snow_main.iloc[:, list(range(1, 7)) + [13] + [14] + [19]].dropna()
-# site_snow_main_apr['Decade'] = pd.to_numeric(site_snow_main_apr['Decade'], errors='coerce')
-# corr_matrix = site_snow_main_apr.corr()
-# sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
-# plt.title('Apr Correlation Heatmap')
-# plt.xticks(rotation=1, fontsize=8)
+site_snow_main_apr = site_snow_main.iloc[:, list(range(1, 7)) + [13] + [14] + [19]].dropna()
+site_snow_main_apr['Decade'] = pd.to_numeric(site_snow_main_apr['Decade'], errors='coerce')
+corr_matrix = site_snow_main_apr.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
+plt.figure(figsize=(10, 8)) 
+plt.title('April (late season) Correlation Heatmap')
+plt.xticks(rotation=1, fontsize=8)
+
+plt.savefig("./images/apr_heatmap.png")
+plt.clf()
 
 # May:
 site_snow_main_may = site_snow_main.iloc[:, list(range(1, 7)) + [15] + [16] + [19]].dropna()
 site_snow_main_may['Decade'] = pd.to_numeric(site_snow_main_may['Decade'], errors='coerce')
 corr_matrix = site_snow_main_may.corr()
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm_r', center=0.00)
-plt.title('May Correlation Heatmap')
+plt.figure(figsize=(10, 8)) 
+plt.title('May (late season) Correlation Heatmap')
 plt.xticks(rotation=1, fontsize=8)
+
+plt.savefig("./images/may_heatmap.png")
+plt.clf()
 
 
 # %%
@@ -149,7 +165,7 @@ reg_line2a = sns.regplot(x="Elev", y="May norm.", data=site_snow_main, scatter=F
 scatter2b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '1980'], x = "Elev", y = "May (WE) norm.", size=0.5, ax=axes[3,0])
 reg_line2b = sns.regplot(x="Elev", y="May (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[3,0])
 
-# plt.savefig("we_elev_scatter.png")
+plt.savefig("we_elev_scatter.png")
 
 
 
