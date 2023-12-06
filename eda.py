@@ -161,9 +161,6 @@ reg_line2a = sns.regplot(x="Elev", y="May norm.", data=site_snow_main, scatter=F
 scatter2b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '1980'], x = "Elev", y = "May (WE) norm.", size=0.5, ax=axes[3,0])
 reg_line2b = sns.regplot(x="Elev", y="May (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[3,0])
 
-plt.savefig("we_elev_scatter.png")
-
-
 
 # EDA: Scatterplots of snow levels by elevation: 2010s #
 ########################################################
@@ -188,7 +185,8 @@ reg_line4a = sns.regplot(x="Elev", y="May norm.", data=site_snow_main, scatter=F
 scatter4b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '2010'], x = "Elev", y = "May (WE) norm.", size=0.5, ax=axes[3,1])
 reg_line4b = sns.regplot(x="Elev", y="May (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[3,1])
 
-# plt.savefig("./images/snow_we_elev_scatter.png")
+plt.savefig("./images/snow_we_elev_scatter.png")
+plt.clf()
 
 
 # %%
