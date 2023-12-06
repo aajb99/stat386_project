@@ -320,7 +320,7 @@ elev_hist = px.histogram(site_snow_main[(site_snow_main['Decade'] == '1980') |
                                       (site_snow_main['Decade'] == '2000') |
                                        (site_snow_main['Decade'] == '2020')], 
                        x='Elev', nbins=30, title='Elevation Distributions: 1980s, 2000s (cumul.), 2020s (cumul.)', 
-                       opacity=0.5, histnorm='probability density', color = 'Decade', marginal='kde',
+                       opacity=0.5, histnorm='probability density', color = 'Decade',
                        )
 elev_hist.update_layout(barmode='overlay')
 # fig2000 = px.histogram(site_snow_main[site_snow_main['Decade'] == '2000'], 
