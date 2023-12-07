@@ -359,6 +359,8 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_ma
 plt.legend()
 plt.savefig("./images/snowpack_jan_decade.png")
 
+plt.clf()
+
 # plt.show()
 
 
@@ -372,7 +374,9 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_ma
 
 plt.legend()
 plt.savefig("./images/snowpack_feb_decade.png")
-# plt.legend()
+
+plt.clf()
+
 # plt.show()
 
 
@@ -386,6 +390,9 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_ma
 
 plt.legend()
 plt.savefig("./images/snowpack_apr_decade.png")
+
+plt.clf()
+
 # plt.legend()
 # plt.show()
 
@@ -400,6 +407,9 @@ sns.distplot(site_snow_main[(site_snow_main['Decade'] == '2010') | (site_snow_ma
 
 plt.legend()
 plt.savefig("./images/snowpack_may_decade.png")
+
+plt.clf()
+
 # plt.legend()
 # plt.show()
 
