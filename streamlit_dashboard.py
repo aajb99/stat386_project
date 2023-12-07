@@ -18,6 +18,7 @@ from selenium.webdriver.common.by import By
 import time
 from sklearn.preprocessing import MinMaxScaler
 from PIL import Image
+import plotly.graph_objects as go
 pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 st.title('Utah Snow Accumulation Study: Patterns 1979-2023')
@@ -201,6 +202,83 @@ elif selected_month2 == 'May':
     st.image(fig_smd4, caption='May',
              use_column_width=True)
     st.empty()
+
+
+
+#####################################################
+### Snowpack comparing months by decade: violin plots
+st.subheader('Comparing Snowpack Progression over Months, by Decade')
+
+selected_months = st.multiselect('Select Month(s)', ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                 ['Jan', 'Feb', 'Mar', 'Apr', 'May'])
+
+snow_month_decade_vioplots = go.Figure()
+color_list = ['darkblue', 'blue', 'turquoise', 'limegreen', 'darkgreen']
+
+selected_columns = ['Decade'] + selected_months
+df_selected = eda.site_snow_main[eda.site_snow_main['Decade'] != '2020']
+df_selected = eda.site_snow_main[selected_columns]
+
+# Iterate over selected months to create violin plots
+for month, color in zip(['Jan', 'Feb', 'Mar', 'Apr', 'May'], color_list):
+    if month in selected_months:
+        trace = go.Violin(
+            x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == month],
+            y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == month],
+            legendgroup=month, scalegroup=month, name=month,
+            line_color=color
+        )
+        snow_month_decade_vioplots.add_trace(trace)
+
+snow_month_decade_vioplots.update_traces(box_visible=True, meanline_visible=True)
+snow_month_decade_vioplots.update_layout(xaxis=dict(categoryorder='array', categoryarray=selected_decs), violinmode='group')
+st.plotly_chart(snow_month_decade_vioplots, use_container_width=True)
+
+
+
+
+
+
+
+
+
+# selected_months = st.multiselect('Select Month(s)', ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+#                                  ['Jan', 'Feb', 'Mar', 'Apr', 'May'])
+
+# snow_month_decade_vioplots = go.Figure()
+# color_list = ['darkblue', 'blue', 'turquoise', 'limegreen', 'darkgreen']
+
+# df_selected = eda.site_snow_main[eda.site_snow_main['Decade Inst'].isin(selected_decs)]
+
+# if eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Jan'].isin(selected_months):
+#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Jan'],
+#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Jan'],
+#                                                legendgroup='January', scalegroup='January', name='January',
+#                                                line_color='darkblue'))
+# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Feb'].isin(selected_months):
+#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Feb'],
+#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Feb'],
+#                                                legendgroup='February', scalegroup='February', name='February',
+#                                                line_color='blue'))
+# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Mar'].isin(selected_months):
+#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Mar'],
+#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Mar'],
+#                                                legendgroup='March', scalegroup='March', name='March',
+#                                                line_color='turquoise'))
+# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Apr'].isin(selected_months):
+#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Apr'],
+#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Apr'],
+#                                                legendgroup='April', scalegroup='April', name='April',
+#                                                line_color='limegreen'))
+# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'May'].isin(selected_months):
+#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'May'],
+#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'May'],
+#                                                legendgroup='May', scalegroup='May', name='May',
+#                                                line_color='darkgreen'))
+
+# snow_month_decade_vioplots.update_traces(box_visible=True, meanline_visible=True)
+# snow_month_decade_vioplots.update_layout(xaxis=dict(categoryorder='array', categoryarray=['1980', '1990', '2000', '2010', '2020']), violinmode='group')
+# st.plotly_chart(snow_month_decade_vioplots, use_container_width=True)
 
 
 

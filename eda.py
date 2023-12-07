@@ -17,6 +17,7 @@ from selenium.webdriver.common.by import By
 import time
 from sklearn.preprocessing import MinMaxScaler
 import plotly.figure_factory as ff
+import plotly.graph_objects as go
 pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 
@@ -292,28 +293,43 @@ site_snow_main['County Jan Avg'].value_counts()
 # site_snow_main[site_snow_main['installed'] == 1979]['Site_Name'].unique()
 
 
+# %%
+
+melted_site_snow_main = pd.melt(site_snow_main, id_vars=['Decade'], value_vars=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+melted_site_snow_main = melted_site_snow_main[melted_site_snow_main['Decade'] != '2020']
+# melted_site_snow_main
+
+snow_month_decade_vioplots = go.Figure()
+
+snow_month_decade_vioplots.add_trace(go.Violin(x=melted_site_snow_main['Decade'][melted_site_snow_main['variable'] == 'Jan'],
+                                               y=melted_site_snow_main['value'][melted_site_snow_main['variable'] == 'Jan'],
+                                               legendgroup='January', scalegroup='January', name='January',
+                                               line_color='darkblue'))
+snow_month_decade_vioplots.add_trace(go.Violin(x=melted_site_snow_main['Decade'][melted_site_snow_main['variable'] == 'Feb'],
+                                               y=melted_site_snow_main['value'][melted_site_snow_main['variable'] == 'Feb'],
+                                               legendgroup='February', scalegroup='February', name='February',
+                                               line_color='blue'))
+snow_month_decade_vioplots.add_trace(go.Violin(x=melted_site_snow_main['Decade'][melted_site_snow_main['variable'] == 'Mar'],
+                                               y=melted_site_snow_main['value'][melted_site_snow_main['variable'] == 'Mar'],
+                                               legendgroup='March', scalegroup='March', name='March',
+                                               line_color='turquoise'))
+snow_month_decade_vioplots.add_trace(go.Violin(x=melted_site_snow_main['Decade'][melted_site_snow_main['variable'] == 'Apr'],
+                                               y=melted_site_snow_main['value'][melted_site_snow_main['variable'] == 'Apr'],
+                                               legendgroup='April', scalegroup='April', name='April',
+                                               line_color='limegreen'))
+snow_month_decade_vioplots.add_trace(go.Violin(x=melted_site_snow_main['Decade'][melted_site_snow_main['variable'] == 'May'],
+                                               y=melted_site_snow_main['value'][melted_site_snow_main['variable'] == 'May'],
+                                               legendgroup='May', scalegroup='May', name='May',
+                                               line_color='darkgreen'))
+
+# snow_month_decade_vioplots.update_traces(box_visible=True, meanline_visible=True)
+# snow_month_decade_vioplots.update_layout(xaxis=dict(categoryorder='array', categoryarray=['1980', '1990', '2000', '2010', '2020']), violinmode='group')
+# snow_month_decade_vioplots.show()
+
 
 # %%
 
-### Distributions: Snow levels by decade, each month ###
-
-# sns.violinplot(x='Decade', y='Jan', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
-# plt.title('January Across Decades')
-# sns.violinplot(x='Decade', y='Feb', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
-# plt.title('February Across Decades')
-# sns.violinplot(x='Decade', y='Mar', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
-# plt.title('March Across Decades')
-# sns.violinplot(x='Decade', y='Apr', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
-# plt.title('April Across Decades')
-# sns.violinplot(x='Decade', y='May', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
-# plt.title('May Across Decades')
-# sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
-# plt.title('June Across Decades')
-
-
-# %%
-
-site_snow_main['Water Year'].value_counts()
+melted_site_snow_main
 
 
 # %%

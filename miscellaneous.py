@@ -498,3 +498,24 @@ plt.show()
 # elev2000 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '2000']['Elev'], kde=True)
 # #sns.distplot(site_snow_main[site_snow_main['Decade'] == '2010']['Elev'], kde=True)
 # elev2020 = sns.distplot(site_snow_main[site_snow_main['Decade'] == '2020']['Elev'], kde=True)
+
+
+
+
+
+############## Seaborn violin plots code ##############################################################################################
+
+### Distributions: Snow levels by decade, each month ###
+
+# sns.violinplot(x='Decade', y='Jan', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('January Across Decades')
+# sns.violinplot(x='Decade', y='Feb', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('February Across Decades')
+# sns.violinplot(x='Decade', y='Mar', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('March Across Decades')
+# sns.violinplot(x='Decade', y='Apr', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('April Across Decades')
+# sns.violinplot(x='Decade', y='May', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('May Across Decades')
+# sns.violinplot(x='Decade', y='Jun', data=site_snow_main, order=['1980', '1990', '2000', '2010', '2020'])
+# plt.title('June Across Decades')
