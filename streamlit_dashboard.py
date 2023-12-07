@@ -178,26 +178,26 @@ st.empty()
 ### Snowpack by Month hists: comparing decades
 st.subheader('Snowpack by Month: Comparing Grouped Decades')
 
-selected_month = st.selectbox('Select a Month:', ['Jan', 'Feb', 'Apr', 'May'])
+selected_month2 = st.selectbox('Select a Month:', ['January', 'February', 'April', 'May'])
 
 fig_smd1 = Image.open('./images/snowpack_jan_decade.png')
 fig_smd2 = Image.open('./images/snowpack_feb_decade.png')
 fig_smd3 = Image.open('./images/snowpack_apr_decade.png')
 fig_smd4 = Image.open('./images/snowpack_may_decade.png')
 
-if selected_month == 'Jan':
+if selected_month2 == 'January':
     st.image(fig_smd1, caption='January',
              use_column_width=True)
     st.empty()
-elif selected_month == 'Feb':
+elif selected_month2 == 'February':
     st.image(fig_smd2, caption='February',
              use_column_width=True)
     st.empty()
-elif selected_month == 'Apr':
+elif selected_month2 == 'April':
     st.image(fig_smd3, caption='April',
              use_column_width=True)
     st.empty()
-elif selected_month == 'May':
+elif selected_month2 == 'May':
     st.image(fig_smd4, caption='May',
              use_column_width=True)
     st.empty()

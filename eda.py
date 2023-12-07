@@ -188,7 +188,6 @@ reg_line4b = sns.regplot(x="Elev", y="May (WE) norm.", data=site_snow_main, scat
 plt.savefig("./images/snow_we_elev_scatter.png")
 plt.clf()
 
-
 # %%
 site_snow_main[site_snow_main['Decade'] == '2010']
 
@@ -197,30 +196,32 @@ site_snow_main[site_snow_main['Decade'] == '2010']
 
 # Snow and WE Levels by Elevation: Regression Slopes
 
-# 1980 Snow Slopes
-x_vals = reg_line1a.get_lines()[0].get_xdata()
-y_vals = reg_line1a.get_lines()[0].get_ydata()
-slope1 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
+# # 1980 Snow Slopes
+# x_vals = reg_line1a.get_lines()[0].get_xdata()
+# y_vals = reg_line1a.get_lines()[0].get_ydata()
+# slope1 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
 
-# 1980 WE Slopes
-x_vals = reg_line1b.get_lines()[0].get_xdata()
-y_vals = reg_line1b.get_lines()[0].get_ydata()
-slope2 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
+# # 1980 WE Slopes
+# x_vals = reg_line1b.get_lines()[0].get_xdata()
+# y_vals = reg_line1b.get_lines()[0].get_ydata()
+# slope2 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
 
-# 2010 Snow Slopes
-x_vals = reg_line3a.get_lines()[0].get_xdata()
-y_vals = reg_line3a.get_lines()[0].get_ydata()
-slope3 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
+# # 2010 Snow Slopes
+# x_vals = reg_line3a.get_lines()[0].get_xdata()
+# y_vals = reg_line3a.get_lines()[0].get_ydata()
+# slope3 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
 
-# 2010 WE Slopes
-x_vals = reg_line3b.get_lines()[0].get_xdata()
-y_vals = reg_line3b.get_lines()[0].get_ydata()
-slope4 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
+# # 2010 WE Slopes
+# x_vals = reg_line3b.get_lines()[0].get_xdata()
+# y_vals = reg_line3b.get_lines()[0].get_ydata()
+# slope4 = (y_vals[1] - y_vals[0]) / (x_vals[1] - x_vals[0])
 
 # slope1
 # slope2
 # slope3
 # slope4
+
+
 
 # %%
 
