@@ -144,47 +144,58 @@ fig, axes = plt.subplots(4, 2, figsize=(12, 10))
 
 scatter1a = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '1980'], x = "Elev", y = "Jan norm.", size=0.5, ax=axes[0,0])
 reg_line1a = sns.regplot(x="Elev", y="Jan norm.", data=site_snow_main, scatter=False, color='red', ax=axes[0,0])
-
+axes[0,0].set_ylim(-.05,1.05)
+scatter1a.legend_.remove()
 # plt.savefig("snow_elev_scatter.png")
 
 
 scatter1b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '1980'], x = "Elev", y = "Jan (WE) norm.", size=0.5, ax=axes[1,0])
 reg_line1b = sns.regplot(x="Elev", y="Jan (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[1,0])
-
+axes[1,0].set_ylim(-.05,1.05)
+scatter1b.legend_.remove()
 # plt.savefig("we_elev_scatter.png")
 
 scatter2a = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '1980'], x = "Elev", y = "May norm.", size=0.5, ax=axes[2,0])
 reg_line2a = sns.regplot(x="Elev", y="May norm.", data=site_snow_main, scatter=False, color='red', ax=axes[2,0])
-
+axes[2,0].set_ylim(-.05,1.05)
+scatter2a.legend_.remove()
 # plt.savefig("snow_elev_scatter.png")
 
 
 scatter2b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '1980'], x = "Elev", y = "May (WE) norm.", size=0.5, ax=axes[3,0])
 reg_line2b = sns.regplot(x="Elev", y="May (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[3,0])
-
+axes[3,0].set_ylim(-.05,1.05)
+scatter2b.legend_.remove()
 
 # EDA: Scatterplots of snow levels by elevation: 2010s #
 ########################################################
 
 scatter3a = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '2010'], x = "Elev", y = "Jan norm.", size=0.5, ax=axes[0,1])
 reg_line3a = sns.regplot(x="Elev", y="Jan norm.", data=site_snow_main, scatter=False, color='red', ax=axes[0,1])
-
+axes[0,1].set_ylim(-.05,1.05)
+scatter3a.legend_.remove()
 # plt.savefig("snow_elev_scatter.png")
 
 
 scatter3b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '2010'], x = "Elev", y = "Jan (WE) norm.", size=0.5, ax=axes[1,1])
 reg_line3b = sns.regplot(x="Elev", y="Jan (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[1,1])
-
+axes[1,1].set_ylim(-.05,1.05)
+scatter3b.legend_.remove()
 # plt.savefig("we_elev_scatter.png")
 
 scatter4a = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '2010'], x = "Elev", y = "May norm.", size=0.5, ax=axes[2,1])
 reg_line4a = sns.regplot(x="Elev", y="May norm.", data=site_snow_main, scatter=False, color='red', ax=axes[2,1])
-
+axes[2,1].set_ylim(-.05,1.05)
+scatter4a.legend_.remove()
 # plt.savefig("snow_elev_scatter.png")
 
 
 scatter4b = sns.scatterplot(site_snow_main[site_snow_main['Decade'] == '2010'], x = "Elev", y = "May (WE) norm.", size=0.5, ax=axes[3,1])
 reg_line4b = sns.regplot(x="Elev", y="May (WE) norm.", data=site_snow_main, scatter=False, color='red', ax=axes[3,1])
+axes[3,1].set_ylim(-.05,1.05)
+scatter4b.legend_.remove()
+
+plt.suptitle('Snowpack Patterns by Elevation (ft): Comparing Patterns between 1980s (Left Column) and 2010s (Right Column)', fontsize=15)
 
 plt.savefig("./images/snow_we_elev_scatter.png")
 plt.clf()

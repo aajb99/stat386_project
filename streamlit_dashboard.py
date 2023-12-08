@@ -157,7 +157,7 @@ st.plotly_chart(elev_hist, use_container_width=True)
 ###########################################################
 # Snow levels by elevation: comparing 1980 and 2010 decades
 # Create 2x2 scatter subplot matrix
-st.subheader('Does Elevation ')
+st.subheader('Is Elevation a Major Factor in Snowpack Variation Over Time?')
 
 fig_scatter = Image.open('./images/snow_we_elev_scatter.png')
 
