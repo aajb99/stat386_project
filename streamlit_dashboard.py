@@ -23,9 +23,26 @@ pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
 st.title('Utah Snow Accumulation Study: Patterns 1979-2023')
 
+st.write('This is a study to determine whether or not Snow Accumulation has changed its pattern over time in the ' \
+         'state of Utah (US). Has there been a decrease in snowpack? Or maybe an increase? If so, where do we see ' \
+            'these changes occurring, and what should they be attributed to? Let\'s take a look:')
+
+st.write('Here is the primary dataset for the study. Month columns, such as as "Jan" or "May", denote the levels of ' \
+         'snow data (in inches) collected at the beginning of that particular month. "Jan (WE)" contains the calculated ' \
+            'water equivalent for such snow. The remaining categorical factors describe each SNOTEL Site (instrument for ' \
+                'measuring snowpack—https://opensnow.com/news/post/snotel-explained).')
+    
+
+df_display = eda.site_snow_main.copy()
+df_display['installed'] = df_display['installed'].astype('string')
+df_display['Water Year'] = df_display['Water Year'].astype('string')
+st.dataframe(df_display.head(5))
+
+st.write('(Additional information on data collection and set compilation can be found here: ' \
+         'https://aajb99.github.io/')
 
 ########################
-### Site Installment Map
+### Correlation Heatmaps
 st.subheader('Correlation Heatmaps: By Month, Observing Key Factors')
 
 selected_month = st.selectbox('Select a Month:', ['Jan', 'Feb', 'Apr', 'May'])
@@ -51,6 +68,13 @@ elif selected_month == 'May':
     st.image(fig_h4, caption='May',
              use_column_width=True)
     st.empty()
+
+st.write('The correlation heatmaps depict each monthly snowpack factor and its correlation ' \
+         'with other variables. As it is depicted here, there is a general trend of decreasing correlation ' \
+            'between the monthly snowpack/water equivalent factors with factors of time, including decade, water year, ' \
+                'and year installed. This will be explored further, but other relationships must be analyzed, such as ' \
+                    'elevation and location (Lat/Lon) with snowpack—strong correlations here would prove difficult to ' \
+                        'isolate and analyze the relationship between snowpack and time variables.')
 
 
 ########################
@@ -136,6 +160,12 @@ elif selected_unit == 'Decade':
     st.plotly_chart(plot2, use_container_width=True)
 
 
+st.write('The SNOTEL Site Maps above depict location and year/decade when they were installed/in use. This is to provide ' \
+         'evidence that since the initial installments, SNOTEL Sites have been well distributed across Utah by decade, ' \
+            'and thus each decade is well-represented across levels of location. There are a few obvious exceptions, but ' \
+                'the general trend shows an even distribution across decades.')
+
+
 ########################
 ### Elevation by Decade
 st.subheader('Elevation by Decade')
@@ -153,6 +183,10 @@ elev_hist.update_layout(barmode='overlay')
 
 st.plotly_chart(elev_hist, use_container_width=True)
 
+st.write('The histograms above depict the distribution elevation level across the three decades listed. Similarly to ' \
+         'the SNOTEL Site Maps, these provide evidence that the elevation of sites across decades is (fairly) evenly ' \
+            'distributed, and thus decades are well-represented across levels of elevation.')
+
 
 ###########################################################
 # Snow levels by elevation: comparing 1980 and 2010 decades
@@ -162,12 +196,15 @@ st.subheader('Is Elevation a Major Factor in Snowpack Variation Over Time?')
 fig_scatter = Image.open('./images/snow_we_elev_scatter.png')
 
 st.image(fig_scatter, 
-         caption='Interpretation: these plots are designed to determine whether or not ' \
-            'the nature of the snowpack and respective WE by elevation levels varies ' \
-                'on a seasonal basis or over decades of time. As it is seen by the chart ' \
-                'and (slope computation), the average snowpack and respective WE levels ' \
-                    'change by elevation at a nearly-equivalent rate across decades. ' \
-                        '.....',
+         caption='These plots are designed to determine whether or not ' \
+            'the nature of the snowpack (and respective WE) by elevation levels varies ' \
+                'on a seasonal basis and over decades of time. As seen by the chart, ' \
+                'the average snowpack and respective WE levels change at a consistent rate ' \
+                    'at each level of month (slope calculations also reflect this consistency) across decades. '\
+                        'While the regression pattern does change between months (Jan to May), ' \
+                            'which is expected as lower elevations experience a faster transition to ' \
+                                'above-freezing temperatures, the trends stay consistent across decades. Thus,' \
+                                'we can assume that the nature of snow is constant and comparable across decades.',
          use_column_width=True)
 
 st.empty()
@@ -204,6 +241,14 @@ elif selected_month2 == 'May':
     st.empty()
 
 
+st.write('Going back to the previous trends depicted in the correlation heatmaps, it is noted that as the months ' \
+         'of the year progress, the observed snowpack distributions shift in opposite directions—specifically, the ' \
+            'distribution from 1979-1999 sees relatively-higher levels of snowpack in the late season. It is interesting ' \
+                'because at the same time, the distribution from 2010-2023 sees relatively-higher levels of snowpack ' \
+                    'in the early season. Therefore, these trends provide evidence that if there is a general decline in snowfall ' \
+                        'over years, it is more likely attributed to fluctuating weather patterns and temperature increases (causing shorter winter seasons) due ' \
+                            'to global trends, and not a long-term drought issue.')
+
 
 #####################################################
 ### Snowpack comparing months by decade: violin plots
@@ -231,10 +276,15 @@ for month, color in zip(['Jan', 'Feb', 'Mar', 'Apr', 'May'], color_list):
         snow_month_decade_vioplots.add_trace(trace)
 
 snow_month_decade_vioplots.update_traces(box_visible=True, meanline_visible=True)
-snow_month_decade_vioplots.update_layout(xaxis=dict(categoryorder='array', categoryarray=selected_decs), violinmode='group')
+snow_month_decade_vioplots.update_layout(xaxis=dict(categoryorder='array', categoryarray=['1980', '1990', '2000', '2010']), violinmode='group')
 st.plotly_chart(snow_month_decade_vioplots, use_container_width=True)
 
-
+st.write('Lastly, to further support my claim that there is a gradual decline in snowfall in Utah (due to weather fluctuations and ' \
+         'temperature increases), this chart provides evidence of a general decrease as the distributions of observed snowpack ' \
+            'gravitate to zero as decades increase. It is seen that extreme levels of snowpack are more frequent in earlier decades, ' \
+                'and while months like Jan see higher median values in later decades, later months see a significant drop in median values' \
+                    'over time. Thus, later decades experience shorter seasons of snowfall, and it is less evident that this . \
+                        would be due to a decrease in precipitation, rather than in changes in global weather patterns and temperature.')
 
 
 

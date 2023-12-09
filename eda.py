@@ -444,3 +444,8 @@ plt.clf()
 # %%
 site_snow_main
 # %%
+
+# site_snow_main[site_snow_main['installed'].astype('string')].head()
+
+
+# %%
