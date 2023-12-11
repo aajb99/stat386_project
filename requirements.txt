@@ -5,4 +5,4 @@ seaborn
 plotly
 matplotlib
 bs4
-PIL
+Pillow
