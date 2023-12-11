@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 #from webdriver_manager.chrome import ChromeDriverManager
 #from selenium.webdriver.common.by import By
 #import time
-from sklearn.preprocessing import MinMaxScaler
+#from sklearn.preprocessing import MinMaxScaler
 from PIL import Image
 import plotly.graph_objects as go
 pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
@@ -66,19 +66,19 @@ for county in site_snow_main['County'].unique():
 # site_snow_main
 
 
-# Normalized Jan and Jan (WE) for scatterplot EDA below:
-scaler = MinMaxScaler()
-# Normalize Jan
-site_snow_main['Jan norm.'] = scaler.fit_transform(site_snow_main[['Jan']])
-# Normalize the Jan (WE) column
-site_snow_main['Jan (WE) norm.'] = scaler.fit_transform(site_snow_main[['Jan (WE)']])
+# # Normalized Jan and Jan (WE) for scatterplot EDA below:
+# scaler = MinMaxScaler()
+# # Normalize Jan
+# site_snow_main['Jan norm.'] = scaler.fit_transform(site_snow_main[['Jan']])
+# # Normalize the Jan (WE) column
+# site_snow_main['Jan (WE) norm.'] = scaler.fit_transform(site_snow_main[['Jan (WE)']])
 
-# Normalized May and May (WE) for scatterplot EDA below:
-scaler = MinMaxScaler()
-# Normalize Jan
-site_snow_main['May norm.'] = scaler.fit_transform(site_snow_main[['May']])
-# Normalize the Jan (WE) column
-site_snow_main['May (WE) norm.'] = scaler.fit_transform(site_snow_main[['May (WE)']])
+# # Normalized May and May (WE) for scatterplot EDA below:
+# scaler = MinMaxScaler()
+# # Normalize Jan
+# site_snow_main['May norm.'] = scaler.fit_transform(site_snow_main[['May']])
+# # Normalize the Jan (WE) column
+# site_snow_main['May (WE) norm.'] = scaler.fit_transform(site_snow_main[['May (WE)']])
 
 #################################################################################################################################
 
