@@ -64,7 +64,7 @@ for county in site_snow_main['County'].unique():
     
     site_snow_main.loc[site_snow_main['County'] == county, 'County Jan Avg'] = county_avg
 
-site_snow_main
+# site_snow_main
 
 
 # Normalized Jan and Jan (WE) for scatterplot EDA below:
