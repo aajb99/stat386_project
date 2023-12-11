@@ -10,11 +10,11 @@ import urllib.parse
 import json
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-import time
+#from selenium import webdriver
+#from selenium.webdriver.chrome.service import Service as ChromeService
+#from webdriver_manager.chrome import ChromeDriverManager
+#from selenium.webdriver.common.by import By
+#import time
 from sklearn.preprocessing import MinMaxScaler
 from PIL import Image
 import plotly.graph_objects as go
