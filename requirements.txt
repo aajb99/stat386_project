@@ -11,3 +11,4 @@ selenium
 webriver_manager
 scickit-learn
 PIL
+libsousou
