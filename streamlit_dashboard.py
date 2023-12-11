@@ -38,8 +38,9 @@ df_display['installed'] = df_display['installed'].astype('string')
 df_display['Water Year'] = df_display['Water Year'].astype('string')
 st.dataframe(df_display.head(5))
 
-st.write('(Additional information on data collection and set compilation can be found here: ' \
-         'https://aajb99.github.io/')
+st.write('(Additional information on data collection/compilation and EDA/findings can be found here: ' \
+         'https://aajb99.github.io/. Here\'s access to my Github with my code and figures: ' \
+         'https://github.com/aajb99/stat386_project)')
 
 ########################
 ### Correlation Heatmaps
