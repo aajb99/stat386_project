@@ -21,7 +21,7 @@ from PIL import Image
 import plotly.graph_objects as go
 pd.set_option('display.max_columns', 200) # Shows all columns rather than "..."
 
-st.title('Utah Snow Accumulation Study: Patterns 1979-2023')
+st.title('Utah Snow Accumulation Study: Patterns Between 1979-2023')
 
 st.write('This is a study to determine whether or not Snow Accumulation has changed its pattern over time in the ' \
          'state of Utah (US). Has there been a decrease in snowpack? Or maybe an increase? If so, where do we see ' \
