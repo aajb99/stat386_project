@@ -32,7 +32,57 @@ st.write('Here is the primary dataset for the study. Month columns, such as as "
             'water equivalent for such snow. The remaining categorical factors describe each SNOTEL Site (instrument for ' \
                 'measuring snowpack—https://opensnow.com/news/post/snotel-explained).')
 
+
+# Read in Data and Customize Features#################################################################################################
 site_snow_main = pd.read_csv('site_snow.csv')
+
+# Custom Features #
+###################
+
+# Snow Level Measurements by Decade Column:
+site_snow_main['Decade'] = ''
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(1979, 1990)), 'Decade'] = '1980'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(1990, 2000)), 'Decade'] = '1990'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2000, 2010)), 'Decade'] = '2000'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2010, 2020)), 'Decade'] = '2010'
+site_snow_main.loc[site_snow_main['Water Year'].isin(range(2020, 2024)), 'Decade'] = '2020'
+
+
+# Installments by Decade Column:
+site_snow_main['Decade Inst'] = ''
+site_snow_main.loc[site_snow_main['installed'].isin(range(1970, 1980)), 'Decade Inst'] = '1978/79'
+site_snow_main.loc[site_snow_main['installed'].isin(range(1980, 1990)), 'Decade Inst'] = '1980'
+site_snow_main.loc[site_snow_main['installed'].isin(range(1990, 2000)), 'Decade Inst'] = '1990'
+site_snow_main.loc[site_snow_main['installed'].isin(range(2000, 2010)), 'Decade Inst'] = '2000'
+site_snow_main.loc[site_snow_main['installed'].isin(range(2010, 2020)), 'Decade Inst'] = '2010'
+site_snow_main.loc[site_snow_main['installed'].isin(range(2020, 2024)), 'Decade Inst'] = '2020'
+
+# Jan sum by County Column:
+site_snow_main['County Jan Avg'] = ''
+for county in site_snow_main['County'].unique():
+    county_avg = site_snow_main[site_snow_main['County'] == county]['Jan'].mean()
+    
+    site_snow_main.loc[site_snow_main['County'] == county, 'County Jan Avg'] = county_avg
+
+site_snow_main
+
+
+# Normalized Jan and Jan (WE) for scatterplot EDA below:
+scaler = MinMaxScaler()
+# Normalize Jan
+site_snow_main['Jan norm.'] = scaler.fit_transform(site_snow_main[['Jan']])
+# Normalize the Jan (WE) column
+site_snow_main['Jan (WE) norm.'] = scaler.fit_transform(site_snow_main[['Jan (WE)']])
+
+# Normalized May and May (WE) for scatterplot EDA below:
+scaler = MinMaxScaler()
+# Normalize Jan
+site_snow_main['May norm.'] = scaler.fit_transform(site_snow_main[['May']])
+# Normalize the Jan (WE) column
+site_snow_main['May (WE) norm.'] = scaler.fit_transform(site_snow_main[['May (WE)']])
+
+#################################################################################################################################
+
 
 melted_site_snow_main = pd.melt(site_snow_main, id_vars=['Decade'], value_vars=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
 melted_site_snow_main = melted_site_snow_main[melted_site_snow_main['Decade'] != '2020']
@@ -45,6 +95,8 @@ st.dataframe(df_display.head(5))
 st.write('(Additional information on data collection/compilation and EDA/findings can be found here: ' \
          'https://aajb99.github.io/. Here\'s access to my Github with my code and figures: ' \
          'https://github.com/aajb99/stat386_project)')
+
+#############################################################################################################################
 
 ########################
 ### Correlation Heatmaps
