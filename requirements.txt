@@ -5,7 +5,5 @@ seaborn
 plotly
 matplotlib
 bs4
-selenium
-webriver_manager
 scickit-learn
 PIL
