@@ -4,11 +4,8 @@ numpy
 seaborn
 plotly
 matplotlib
-eda
-urllib
 bs4
 selenium
 webriver_manager
 scickit-learn
 PIL
-libsousou
