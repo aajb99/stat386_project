@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 import plotly.express as px
 import matplotlib.pyplot as plt
-import eda
+# import eda
 import requests
 import re
 import urllib.parse
@@ -31,9 +31,13 @@ st.write('Here is the primary dataset for the study. Month columns, such as as "
          'snow data (in inches) collected at the beginning of that particular month. "Jan (WE)" contains the calculated ' \
             'water equivalent for such snow. The remaining categorical factors describe each SNOTEL Site (instrument for ' \
                 'measuring snowpack—https://opensnow.com/news/post/snotel-explained).')
-    
 
-df_display = eda.site_snow_main.copy()
+site_snow_main = pd.read_csv('site_snow.csv')
+
+melted_site_snow_main = pd.melt(site_snow_main, id_vars=['Decade'], value_vars=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+melted_site_snow_main = melted_site_snow_main[melted_site_snow_main['Decade'] != '2020']
+
+df_display = site_snow_main.copy()
 df_display['installed'] = df_display['installed'].astype('string')
 df_display['Water Year'] = df_display['Water Year'].astype('string')
 st.dataframe(df_display.head(5))
@@ -86,8 +90,8 @@ selected_unit = st.selectbox('Select a unit of time', ['By Year', 'By Decade'])
 
 if selected_unit == 'By Year':
     st.write('SNOTEL Sites: Location and Year Installed')
-    year = st.slider('Select year',eda.site_snow_main['installed'].min(),eda.site_snow_main['installed'].max())
-    plot1 = px.scatter_geo(eda.site_snow_main[eda.site_snow_main['installed'] <= year], 
+    year = st.slider('Select year',site_snow_main['installed'].min(),site_snow_main['installed'].max())
+    plot1 = px.scatter_geo(site_snow_main[site_snow_main['installed'] <= year], 
                            lat='Lat', lon='Lon', scope='usa', 
                            color='installed', color_continuous_scale='Sunsetdark', hover_name='Site_Name')
     
@@ -101,9 +105,9 @@ if selected_unit == 'By Year':
     st.plotly_chart(plot1, use_container_width=True)
 elif selected_unit == 'By Decade':
     st.write('SNOTEL Sites: Location and Decade Installed')
-    selected_decs = st.multiselect('Select Decade(s)', eda.site_snow_main['Decade Inst'].unique(), 
-                   eda.site_snow_main['Decade Inst'].unique())
-    df_selected = eda.site_snow_main[eda.site_snow_main['Decade Inst'].isin(selected_decs)]
+    selected_decs = st.multiselect('Select Decade(s)', site_snow_main['Decade Inst'].unique(), 
+                   site_snow_main['Decade Inst'].unique())
+    df_selected = site_snow_main[site_snow_main['Decade Inst'].isin(selected_decs)]
     plot2 = px.scatter_geo(df_selected, lat='Lat',
                lon='Lon', scope='usa', 
                color='Decade Inst', 
@@ -128,8 +132,8 @@ selected_unit = st.selectbox('Select unit of time in use', ['Year', 'Decade'])
 
 if selected_unit == 'Year':
     st.write('SNOTEL Sites: those used in specified year with location')
-    year = st.slider('Select year',eda.site_snow_main['Water Year'].min(),eda.site_snow_main['Water Year'].max())
-    plot1 = px.scatter_geo(eda.site_snow_main[eda.site_snow_main['Water Year'] == year], 
+    year = st.slider('Select year',site_snow_main['Water Year'].min(),site_snow_main['Water Year'].max())
+    plot1 = px.scatter_geo(site_snow_main[site_snow_main['Water Year'] == year], 
                            lat='Lat', lon='Lon', scope='usa', hover_name='Site_Name')
     
     plot1.update_layout(width = 1000, height = 500)
@@ -142,9 +146,9 @@ if selected_unit == 'Year':
     st.plotly_chart(plot1, use_container_width=True)
 elif selected_unit == 'Decade':
     st.write('SNOTEL Sites: Location and Decade In Use')
-    selected_decs = st.multiselect('Select Decade(s)', eda.site_snow_main['Decade'].unique(), 
-                   eda.site_snow_main['Decade'].unique())
-    df_selected = eda.site_snow_main[eda.site_snow_main['Decade'].isin(selected_decs)]
+    selected_decs = st.multiselect('Select Decade(s)', site_snow_main['Decade'].unique(), 
+                   site_snow_main['Decade'].unique())
+    df_selected = site_snow_main[site_snow_main['Decade'].isin(selected_decs)]
     plot2 = px.scatter_geo(df_selected, lat='Lat',
                lon='Lon', scope='usa', 
                color='Decade', 
@@ -173,7 +177,7 @@ st.subheader('Elevation by Decade')
 
 selected_decs2 = st.multiselect('Select a decade (cumulative)', ['1980', '2000', '2020'],
                                  ['1980', '2000', '2020'])
-df_dec_selected = eda.site_snow_main[eda.site_snow_main['Decade'].isin(selected_decs2)]
+df_dec_selected = site_snow_main[site_snow_main['Decade'].isin(selected_decs2)]
 
 elev_hist = px.histogram(df_dec_selected, 
                        x='Elev', nbins=30, title='Elevation Distributions: 1980s, 2000s (cumul.), 2020s (cumul.)', 
@@ -262,15 +266,15 @@ snow_month_decade_vioplots = go.Figure()
 color_list = ['darkblue', 'blue', 'turquoise', 'limegreen', 'darkgreen']
 
 selected_columns = ['Decade'] + selected_months
-df_selected = eda.site_snow_main[eda.site_snow_main['Decade'] != '2020']
-df_selected = eda.site_snow_main[selected_columns]
+df_selected = site_snow_main[site_snow_main['Decade'] != '2020']
+df_selected = site_snow_main[selected_columns]
 
 # Iterate over selected months to create violin plots
 for month, color in zip(['Jan', 'Feb', 'Mar', 'Apr', 'May'], color_list):
     if month in selected_months:
         trace = go.Violin(
-            x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == month],
-            y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == month],
+            x=melted_site_snow_main['Decade'][melted_site_snow_main['variable'] == month],
+            y=melted_site_snow_main['value'][melted_site_snow_main['variable'] == month],
             legendgroup=month, scalegroup=month, name=month,
             line_color=color
         )
