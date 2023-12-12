@@ -343,8 +343,8 @@ st.write('Lastly, to further support my claim that there is a gradual decline in
                         would be due to a decrease in precipitation, rather than in changes in global weather patterns and temperature.')
 
 
-st.subheader('Links to Sources and Additional Info')
+st.subheader('Links')
 st.write('Data collection/compilation and EDA/findings: https://aajb99.github.io/')
 st.write('My Github with code and figures: https://github.com/aajb99/stat386_project')
 st.write('For more on SNOTEL Sites: https://opensnow.com/news/post/snotel-explained')
-st.write('USDA—Air & Water Database Public Reports: https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT')
+st.write('USDA—Air & Water Database: https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT')
