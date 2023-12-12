@@ -5,5 +5,4 @@ seaborn
 plotly
 matplotlib
 bs4
-scickit-learn
-PIL
+Pillow
