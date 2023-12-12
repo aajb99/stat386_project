@@ -91,10 +91,6 @@ df_display['installed'] = df_display['installed'].astype('string')
 df_display['Water Year'] = df_display['Water Year'].astype('string')
 st.dataframe(df_display.head(5))
 
-st.write('(Additional information on data collection/compilation and EDA/findings can be found here: ' \
-         'https://aajb99.github.io/. Here\'s access to my Github with my code and figures: ' \
-         'https://github.com/aajb99/stat386_project)')
-
 #############################################################################################################################
 
 ########################
@@ -347,56 +343,8 @@ st.write('Lastly, to further support my claim that there is a gradual decline in
                         would be due to a decrease in precipitation, rather than in changes in global weather patterns and temperature.')
 
 
-
-
-
-
-
-# selected_months = st.multiselect('Select Month(s)', ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-#                                  ['Jan', 'Feb', 'Mar', 'Apr', 'May'])
-
-# snow_month_decade_vioplots = go.Figure()
-# color_list = ['darkblue', 'blue', 'turquoise', 'limegreen', 'darkgreen']
-
-# df_selected = eda.site_snow_main[eda.site_snow_main['Decade Inst'].isin(selected_decs)]
-
-# if eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Jan'].isin(selected_months):
-#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Jan'],
-#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Jan'],
-#                                                legendgroup='January', scalegroup='January', name='January',
-#                                                line_color='darkblue'))
-# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Feb'].isin(selected_months):
-#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Feb'],
-#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Feb'],
-#                                                legendgroup='February', scalegroup='February', name='February',
-#                                                line_color='blue'))
-# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Mar'].isin(selected_months):
-#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Mar'],
-#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Mar'],
-#                                                legendgroup='March', scalegroup='March', name='March',
-#                                                line_color='turquoise'))
-# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'Apr'].isin(selected_months):
-#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'Apr'],
-#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'Apr'],
-#                                                legendgroup='April', scalegroup='April', name='April',
-#                                                line_color='limegreen'))
-# elif eda.melted_site_snow_main[eda.melted_site_snow_main['variable'] == 'May'].isin(selected_months):
-#     snow_month_decade_vioplots.add_trace(go.Violin(x=eda.melted_site_snow_main['Decade'][eda.melted_site_snow_main['variable'] == 'May'],
-#                                                y=eda.melted_site_snow_main['value'][eda.melted_site_snow_main['variable'] == 'May'],
-#                                                legendgroup='May', scalegroup='May', name='May',
-#                                                line_color='darkgreen'))
-
-# snow_month_decade_vioplots.update_traces(box_visible=True, meanline_visible=True)
-# snow_month_decade_vioplots.update_layout(xaxis=dict(categoryorder='array', categoryarray=['1980', '1990', '2000', '2010', '2020']), violinmode='group')
-# st.plotly_chart(snow_month_decade_vioplots, use_container_width=True)
-
-
-
-# Side by side (doesn't work with map)
-# col1, col2 = st.columns(2)
-
-# with col1:
-#     st.plotly_chart(eda.plot2)
-
-# with col2:
-#     st.plotly_chart(eda.plot1)
+st.subheader('Links to Sources and Additional Info')
+st.write('Data collection/compilation and EDA/findings: https://aajb99.github.io/')
+st.write('My Github with code and figures: https://github.com/aajb99/stat386_project')
+st.write('For more on SNOTEL Sites: https://opensnow.com/news/post/snotel-explained')
+st.write('USDA—Air & Water Database Public Reports: https://wcc.sc.egov.usda.gov/nwcc/snow-course-sites.jsp?state=UT')
