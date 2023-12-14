@@ -1,1 +1,18 @@
 Feedback on dashboard:
+
+Orion Bowers: For the dashboard, it's looking really good. It's got far more context and 
+    descriptions than I gave my own. I might be ignorant, but adding what a definition of 
+    SNOTEL near the top could help people like me know the signficance of their equal 
+    distribution. Also, there's a few typos on the very last paragraph. Once again, well done.
+Reponse: Fixed typos and looked into describing SNOTEL sites further.
+
+Garrett Springer: Dashboard - Great visualizations! It looked really cool and professional. 
+    Maybe for the year slider under the snowtel installment map either change it to only include 
+    one year (instead of everything up to that year) or make it obvious that it is including all 
+    the years up until that year.
+Response: added more description to the slider tool and how it's measuring years over time.
+
+Camilla McKinnon: For your dashboard - Can you add a conclusion section at the end just to really 
+    drive home the key insights? You could also look into trimming down some of your explanations, 
+    but other than that I think it's good. I really liked the map feature, that was fun.
+Response: Looked into trimming down comments and adding more to my concluding comments.

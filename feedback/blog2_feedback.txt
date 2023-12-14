@@ -1,1 +1,28 @@
-Feedback on research blog post:
+Feedback on EDA, results, and findings blog post (second blog post):
+
+Orion Bowers: Overall, good post. I felt like you were able to research and find some good insights. 
+    I don't know if it's because I'm tired, but I had a hard time concentrating on some of the 
+    longer paragraphs. Maybe you could break them up into several smaller paragraphs to make it 
+    easier on the eyes? Also, you referenced the dashboard offhandedly. I would draw more attention 
+    to it either there or at the end of the post and include a link each time you reference it so it's 
+    easy to find.
+Response: Looked over longer paragraphs and found ways to either shorten them or use more simple
+    descriptions and explanations. Also added a links section at the bottom of the post.
+
+Jeffry Troll: Again good job, your post is well-written with clear explanations. I found a few minor 
+    grammar errors. For example, "customized addtional factors" should be "customized additional factors."
+    Also, I will change how you explain the graphs, I would give them a title, figure number and a caption 
+    and then your opinion, I'll add an image as reference.
+Response: Corrected the grammatical errors and did my best to adapt the figures to include ideal labels,
+    titles, etc.
+
+Daphne LeSueur: I just read through your EDA post and I think it is really well done! I thought everything 
+    was explained very clearly and it was informative. I thought your introduction at the beginning really 
+    set up the rest of the post. I also loved how you put the graphs side-by-side that were modeling the 
+    same thing for different years. I thought it was very intuitive all throughout the post. My personal 
+    opinion is that having a Key Takeaways section and a Conclusion section is a little redundant. I 
+    thought some of the information in your conclusion section could have been considered a key finding! 
+    Otherwise this post was very professional. Good job.
+Response: ***************************************************************************
+
+
