@@ -1,4 +1,4 @@
-Feedback on scraping/data cleaning blog post (first blog post):
+Feedback on scraping/data cleaning blog post (first blog post, full SHA 0daa00b8d9fea88ceb7f4e4bcd0a1b6d4c3ae2cf):
 
 Jackson Passey: The post looks really good, I like how succinct and laid out the steps are. 
     My one improvement for you would be to change the header photo if possible -- something 
