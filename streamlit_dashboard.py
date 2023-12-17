@@ -220,7 +220,7 @@ st.write('The SNOTEL Site Maps above depict location and year/decade when they w
 
 ########################
 ### Elevation by Decade
-st.subheader('Elevation by Decade')
+st.subheader('Elevation (ft) by Decade')
 
 selected_decs2 = st.multiselect('Select a decade (cumulative)', ['1980', '2000', '2020'],
                                  ['1980', '2000', '2020'])
@@ -266,7 +266,7 @@ st.empty()
 
 ##############################################
 ### Snowpack by Month hists: comparing decades
-st.subheader('Snowpack by Month: Comparing Grouped Decades')
+st.subheader('Snowpack (in) by Month: Comparing Grouped Decades')
 
 selected_month2 = st.selectbox('Select a Month:', ['January', 'February', 'April', 'May'])
 
@@ -304,7 +304,7 @@ st.write('Going back to the previous trends depicted in the correlation heatmaps
 
 #####################################################
 ### Snowpack comparing months by decade: violin plots
-st.subheader('Comparing Snowpack Progression over Months, by Decade')
+st.subheader('Comparing Snowpack (in) Progression over Months, by Decade')
 
 selected_months = st.multiselect('Select Month(s)', ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
                                  ['Jan', 'Feb', 'Mar', 'Apr', 'May'])
