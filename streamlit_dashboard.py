@@ -136,7 +136,7 @@ st.subheader('SNOTEL Site Installment Maps')
 selected_unit = st.selectbox('Select a unit of time', ['By Year', 'By Decade'])
 
 if selected_unit == 'By Year':
-    st.write('SNOTEL Sites: Location and Year Installed (Including All Years Up Until Selected Year)')
+    st.write('SNOTEL Sites: Location and Year Installed (including all years up until selected year)')
     year = st.slider('Select year',site_snow_main['installed'].min(),site_snow_main['installed'].max())
     plot1 = px.scatter_geo(site_snow_main[site_snow_main['installed'] <= year], 
                            lat='Lat', lon='Lon', scope='usa', 
