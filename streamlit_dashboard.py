@@ -295,7 +295,7 @@ elif selected_month2 == 'May':
 
 
 st.write('Going back to the correlation heatmaps, it is noted that as the months ' \
-         'of the year progress, the snowpack (in) distributions by decade shift in opposite directions (also depicted here). ' \
+         'of the year progress, the snowpack distributions by decade shift in opposite directions (also depicted here). ' \
            'It is interesting because the distribution from 2010-2023 sees relatively-higher levels of snowpack ' \
             'in the early season, but that is not the case during the spring months. Therefore, these trends provide evidence that ' \
                 'if there is a general decline in snowfall over years, it is more likely attributed to fluctuating weather ' \
