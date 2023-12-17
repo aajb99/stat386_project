@@ -339,7 +339,7 @@ st.plotly_chart(snow_month_decade_vioplots, use_container_width=True)
 st.write('To further support my claim that there is a gradual decline in snowfall in Utah (due to weather fluctuations and ' \
          'temperature increases), this chart shows that the distributions of observed snowpack ' \
             'gravitate to zero as decades increase. ' \
-                'While months like Jan see higher median values in later decades, later months see a significant drop in median values' \
+                'While months like Jan see higher median values in later decades, later months see a significant drop in median values ' \
                     'over time. Thus, later decades experience shorter seasons of snowfall, and it is less evident that this ' \
                         'would be due to a decrease in precipitation—rather, it is due to changes in global weather patterns and temperature.')
 
