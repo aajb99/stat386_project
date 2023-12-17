@@ -65,21 +65,6 @@ for county in site_snow_main['County'].unique():
 
 # site_snow_main
 
-
-# # Normalized Jan and Jan (WE) for scatterplot EDA below:
-# scaler = MinMaxScaler()
-# # Normalize Jan
-# site_snow_main['Jan norm.'] = scaler.fit_transform(site_snow_main[['Jan']])
-# # Normalize the Jan (WE) column
-# site_snow_main['Jan (WE) norm.'] = scaler.fit_transform(site_snow_main[['Jan (WE)']])
-
-# # Normalized May and May (WE) for scatterplot EDA below:
-# scaler = MinMaxScaler()
-# # Normalize Jan
-# site_snow_main['May norm.'] = scaler.fit_transform(site_snow_main[['May']])
-# # Normalize the Jan (WE) column
-# site_snow_main['May (WE) norm.'] = scaler.fit_transform(site_snow_main[['May (WE)']])
-
 #################################################################################################################################
 
 
