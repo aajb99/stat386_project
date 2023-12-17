@@ -13,8 +13,7 @@ Jeffry Troll: Again good job, your post is well-written with clear explanations.
     grammar errors. For example, "customized addtional factors" should be "customized additional factors."
     Also, I will change how you explain the graphs, I would give them a title, figure number and a caption 
     and then your opinion, I'll add an image as reference.
-Response: Corrected the grammatical errors and did my best to adapt the figures to include ideal labels,
-    titles, etc.
+Response: Corrected the grammatical errors and adapted figures to include titles.
 
 Daphne LeSueur: I just read through your EDA post and I think it is really well done! I thought everything 
     was explained very clearly and it was informative. I thought your introduction at the beginning really 
@@ -23,6 +22,7 @@ Daphne LeSueur: I just read through your EDA post and I think it is really well 
     opinion is that having a Key Takeaways section and a Conclusion section is a little redundant. I 
     thought some of the information in your conclusion section could have been considered a key finding! 
     Otherwise this post was very professional. Good job.
-Response: ***************************************************************************
+Response: Merged the Key Takeaways section with the Conclusion section to make my final thoughts sound less
+    redundant.
 
 

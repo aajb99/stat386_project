@@ -136,7 +136,7 @@ st.subheader('SNOTEL Site Installment Maps')
 selected_unit = st.selectbox('Select a unit of time', ['By Year', 'By Decade'])
 
 if selected_unit == 'By Year':
-    st.write('SNOTEL Sites: Location and Year Installed')
+    st.write('SNOTEL Sites: Location and Year Installed (Including All Years Up Until Selected Year)')
     year = st.slider('Select year',site_snow_main['installed'].min(),site_snow_main['installed'].max())
     plot1 = px.scatter_geo(site_snow_main[site_snow_main['installed'] <= year], 
                            lat='Lat', lon='Lon', scope='usa', 
@@ -215,7 +215,8 @@ elif selected_unit == 'Decade':
 st.write('The SNOTEL Site Maps above depict location and year/decade when they were installed/in use. This is to provide ' \
          'evidence that since their initial installments, SNOTEL Sites have been well distributed across Utah by decade, ' \
             'and thus each decade is well-representative of location. There are a few obvious exceptions, but ' \
-                'the general trend shows an even distribution across decades.')
+                'the general trend shows an even distribution across decades (for more on SNOTEL capabilities, ' \
+                    'see https://opensnow.com/news/post/snotel-explained).')
 
 
 ########################
@@ -335,12 +336,12 @@ snow_month_decade_vioplots.update_yaxes(title_text = 'Snow Level (in)')
 snow_month_decade_vioplots.update_xaxes(title_text = 'Decade')
 st.plotly_chart(snow_month_decade_vioplots, use_container_width=True)
 
-st.write('Lastly, to further support my claim that there is a gradual decline in snowfall in Utah (due to weather fluctuations and ' \
-         'temperature increases), this chart provides evidence of a general decrease as the distributions of observed snowpack ' \
-            'gravitate to zero as decades increase. It is seen that extreme levels of snowpack are more frequent in earlier decades, ' \
-                'and while months like Jan see higher median values in later decades, later months see a significant drop in median values' \
-                    'over time. Thus, later decades experience shorter seasons of snowfall, and it is less evident that this . \
-                        would be due to a decrease in precipitation, rather than in changes in global weather patterns and temperature.')
+st.write('To further support my claim that there is a gradual decline in snowfall in Utah (due to weather fluctuations and ' \
+         'temperature increases), this chart shows that the distributions of observed snowpack ' \
+            'gravitate to zero as decades increase. ' \
+                'While months like Jan see higher median values in later decades, later months see a significant drop in median values' \
+                    'over time. Thus, later decades experience shorter seasons of snowfall, and it is less evident that this ' \
+                        'would be due to a decrease in precipitation—rather, it is due to changes in global weather patterns and temperature.')
 
 
 st.subheader('Links')

@@ -4,7 +4,7 @@ Orion Bowers: For the dashboard, it's looking really good. It's got far more con
     descriptions than I gave my own. I might be ignorant, but adding what a definition of 
     SNOTEL near the top could help people like me know the signficance of their equal 
     distribution. Also, there's a few typos on the very last paragraph. Once again, well done.
-Reponse: Fixed typos and looked into describing SNOTEL sites further.###################not completed###
+Reponse: Fixed typos and looked into a more in-depth reference to SNOTEL sites.
 
 Garrett Springer: Dashboard - Great visualizations! It looked really cool and professional. 
     Maybe for the year slider under the snowtel installment map either change it to only include 
