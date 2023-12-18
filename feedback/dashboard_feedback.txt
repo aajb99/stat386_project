@@ -1,3 +1,12 @@
+Issues with the dashboard (implementation process):
+
+Most of the issues for my dashboard had to do with unused packages that were causing 
+problems with running streamlit on the cloud. I was luckily able to resolve this.
+However, there were additional issues with the presentation of my visualizations and
+research findings, which were noted by those who provided me feedback (documented
+below).
+
+
 Feedback on dashboard (draft SHA d89e4c926fb47699d4196ecd380717bd56c46a85):
 
 Orion Bowers: For the dashboard, it's looking really good. It's got far more context and 
